@@ -10,6 +10,8 @@
   --color-brand-error: #ff8a3d;
   --font-sans: var(--font-montserrat);
   --font-alt: var(--font-montserrat-alternates);
+  /* Slot: "Digital Numbers" is not bundled yet; monospace keeps digit widths stable. */
+  --font-digital: "Digital Numbers", ui-monospace, monospace;
 }
 
 body {

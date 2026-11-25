@@ -19,6 +19,12 @@ describe("getMessages", () => {
     expect(m.footer.copyright).toBe("Copyright belongs to Sun* © 2025");
   });
 
+  it("returns the countdown title from the spec in both languages", () => {
+    expect(getMessages("vi").countdown.title).toBe("Sự kiện sẽ bắt đầu sau");
+    expect(getMessages("en").countdown.title).toBe("Event starts in");
+    expect(getMessages("en").countdown.days).toBe("DAYS");
+  });
+
   it("keeps the brand button label identical in every language", () => {
     for (const locale of LOCALES) {
       expect(getMessages(locale).login.button).toBe("LOGIN With Google");

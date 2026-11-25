@@ -13,6 +13,11 @@ describe("isPublicPath", () => {
     expect(isPublicPath("/todo")).toBe(false);
     expect(isPublicPath("/login-help")).toBe(false);
     expect(isPublicPath("/authors")).toBe(false);
+    expect(isPublicPath("/countdown-old")).toBe(false);
+  });
+
+  it("keeps the prelaunch countdown reachable without sign-in", () => {
+    expect(isPublicPath("/countdown")).toBe(true);
   });
 });
 

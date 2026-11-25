@@ -1,4 +1,4 @@
-const WAVE_FALLBACK = [
+export const WAVE_FALLBACK = [
   "radial-gradient(ellipse 40% 60% at 85% 20%, rgb(255 184 0 / 0.55), transparent 70%)",
   "radial-gradient(ellipse 35% 45% at 70% 40%, rgb(255 106 0 / 0.4), transparent 70%)",
   "radial-gradient(ellipse 30% 40% at 95% 55%, rgb(0 200 120 / 0.35), transparent 70%)",

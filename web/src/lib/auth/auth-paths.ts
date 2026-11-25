@@ -2,11 +2,16 @@ export const LOGIN_PATH = "/login";
 export const AFTER_LOGIN_PATH = "/todo";
 export const CALLBACK_PATH = "/auth/callback";
 export const SIGN_OUT_PATH = "/auth/sign-out";
+export const COUNTDOWN_PATH = "/countdown";
 
 const AUTH_ROUTE_PREFIX = "/auth/";
 
 export function isPublicPath(pathname: string): boolean {
-  return pathname === LOGIN_PATH || pathname.startsWith(AUTH_ROUTE_PREFIX);
+  return (
+    pathname === LOGIN_PATH ||
+    pathname === COUNTDOWN_PATH ||
+    pathname.startsWith(AUTH_ROUTE_PREFIX)
+  );
 }
 
 // Accepts only same-origin relative paths so `next` cannot become an open redirect.
