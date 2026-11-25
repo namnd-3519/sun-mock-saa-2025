@@ -23,6 +23,13 @@ const vi = {
     notifications: "Thông báo",
     account: "Tài khoản",
   },
+  fab: {
+    open: "Mở hành động nhanh: Viết KUDOS hoặc Thể lệ",
+    actions: "Hành động nhanh",
+    rules: "Thể lệ",
+    writeKudos: "Viết KUDOS",
+    close: "Đóng hành động nhanh",
+  },
   home: homeVi,
   countdown: {
     title: "Sự kiện sẽ bắt đầu sau",
@@ -55,6 +62,13 @@ const en: Messages = {
     footer: "Footer links",
     notifications: "Notifications",
     account: "Account",
+  },
+  fab: {
+    open: "Open quick actions: Write KUDOS or Rules",
+    actions: "Quick actions",
+    rules: "Rules",
+    writeKudos: "Write KUDOS",
+    close: "Close quick actions",
   },
   home: homeEn,
   countdown: {

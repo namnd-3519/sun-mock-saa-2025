@@ -5,6 +5,8 @@ export const AWARDS_PATH = "/awards";
 export const KUDOS_PATH = "/kudos";
 // "Tiêu chuẩn chung" (footer only) points at the rules page (task "Thể lệ").
 export const STANDARDS_PATH = "/rules";
+// "Viết KUDOS" (floating action button B) opens the compose screen (task "Viết Kudo").
+export const WRITE_KUDOS_PATH = "/kudos/new";
 
 export type NavItem = { href: string; label: string };
 

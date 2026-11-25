@@ -16,8 +16,8 @@ Chỉ liệt kê màn web (bỏ các frame `[iOS]`) và màn đã có spec (số
 |---|---|---|---|---|---|
 | Login | 3 | Login | `GzbNeVGJHz` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/GzbNeVGJHz | UI xong, chưa nối OAuth |
 | Homepage SAA | 3 | Homepage SAA | `i87tDx10uM` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/i87tDx10uM | xong (`/`, header/footer dùng chung) |
-| Homepage SAA | 3 | Floating Action Button - phim nổi chức năng | `_hphd32jN2` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/_hphd32jN2 | chưa làm |
-| Homepage SAA | 3 | Floating Action Button - phim nổi chức năng 2 | `Sv7DFwBw1h` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Sv7DFwBw1h | chưa làm |
+| Homepage SAA | 3 | Floating Action Button - phim nổi chức năng | `_hphd32jN2` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/_hphd32jN2 | xong (widget nổi trên `/`, thu gọn) |
+| Homepage SAA | 3 | Floating Action Button - phim nổi chức năng 2 | `Sv7DFwBw1h` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Sv7DFwBw1h | xong (mở rộng: `/rules`, `/kudos/new`, hủy) |
 | Hệ thống giải | 3 | Hệ thống giải | `zFYDgyj_pD` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/zFYDgyj_pD | chưa làm |
 | Countdown Prelaunch | 3 | Countdown - Prelaunch page | `8PJQswPZmU` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/8PJQswPZmU | chưa làm |
 | Đa ngôn ngữ (VN/EN) | 3 | Dropdown-ngôn ngữ | `hUyaaugye2` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/hUyaaugye2 | làm dở (có ở Login) |

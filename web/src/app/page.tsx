@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { connection } from "next/server";
+import { FloatingActions } from "@/components/floating-actions/floating-actions";
 import { AwardsSection } from "@/components/home/awards-section";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeKeyVisual } from "@/components/home/home-key-visual";
@@ -25,8 +26,8 @@ export default async function HomePage() {
         <RootFurtherStory messages={messages.home} />
         <AwardsSection messages={messages.home} />
         <KudosPromo messages={messages.home} />
-        {/* Slot: the floating action button (MoMorph 6) comes with task "Floating Action Buttons". */}
       </main>
+      <FloatingActions messages={messages.fab} />
     </SiteShell>
   );
 }
