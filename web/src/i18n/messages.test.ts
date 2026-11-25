@@ -60,4 +60,11 @@ describe("getMessages", () => {
       }
     }
   });
+
+  it("returns the Write Kudo copy from the spec in both languages", () => {
+    expect(getMessages("vi").writeKudos.heading).toBe("Gửi lời cám ơn và ghi nhận đến đồng đội");
+    expect(getMessages("vi").writeKudos.messagePlaceholder).toBe("Hãy gửi gắm lời cám ơn và ghi nhận đến đồng đội tại đây nhé!");
+    expect(getMessages("vi").writeKudos.submit).toBe("Gửi");
+    expect(getMessages("en").writeKudos.submit).toBe("Send");
+  });
 });

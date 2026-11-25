@@ -5,6 +5,7 @@ import { homeEn, homeVi } from "./home-messages";
 import { notificationsEn, notificationsVi } from "./notifications-messages";
 import { rulesEn, rulesVi } from "./rules-messages";
 import { kudosEn, kudosVi } from "./kudos-messages";
+import { writeKudosEn, writeKudosVi } from "./write-kudos-messages";
 
 const vi = {
   login: {
@@ -44,6 +45,7 @@ const vi = {
   awardsPage: awardsVi,
   notifications: notificationsVi,
   kudos: kudosVi,
+  writeKudos: writeKudosVi,
   countdown: {
     title: "Sự kiện sẽ bắt đầu sau",
     days: "NGÀY",
@@ -92,6 +94,7 @@ const en: Messages = {
   awardsPage: awardsEn,
   notifications: notificationsEn,
   kudos: kudosEn,
+  writeKudos: writeKudosEn,
   countdown: {
     title: "Event starts in",
     days: "DAYS",
