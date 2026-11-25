@@ -1,17 +1,22 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { WriteKudosMessages } from "@/i18n/write-kudos-messages";
 import { STANDARDS_PATH } from "@/lib/navigation/site-nav";
+import { insertLink } from "@/lib/kudos-compose/link-input";
 import { applyMessageFormat, type MessageFormat } from "@/lib/kudos-compose/message-format";
+import { AddLinkDialog } from "./add-link-dialog";
 import { BoldIcon, ItalicIcon, LinkIcon, NumberedListIcon, QuoteIcon, StrikeIcon } from "./compose-icons";
 
-const TOOLS: { format: MessageFormat; Icon: (p: { className?: string }) => React.ReactNode }[] = [
+type ToolKind = MessageFormat | "link";
+type Selection = { start: number; end: number };
+
+const TOOLS: { format: ToolKind; Icon: (p: { className?: string }) => React.ReactNode }[] = [
   { format: "bold", Icon: BoldIcon },
   { format: "italic", Icon: ItalicIcon },
   { format: "strike", Icon: StrikeIcon },
   { format: "numbered", Icon: NumberedListIcon },
-  // C.5 Link: inserts a Markdown template until the Addlink Box (#20) replaces it.
+  // C.5 Link: opens the Addlink Box (MoMorph OyDLDuSGEa).
   { format: "link", Icon: LinkIcon },
   { format: "quote", Icon: QuoteIcon },
 ];
@@ -30,17 +35,30 @@ type MessageEditorProps = {
 /** C toolbar + D textarea + D.1 hint. */
 export function MessageEditor({ id, errorId, value, invalid, maxLength, messages, onChange, onBlur }: MessageEditorProps) {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const [linkSelection, setLinkSelection] = useState<Selection | null>(null);
   const border = invalid ? "border-[#cf1322]" : "border-brand-border";
 
-  const format = (kind: MessageFormat) => {
+  const restoreSelection = ({ start, end }: Selection) =>
+    requestAnimationFrame(() => {
+      ref.current?.focus();
+      ref.current?.setSelectionRange(start, end);
+    });
+
+  const format = (kind: ToolKind) => {
     const area = ref.current;
     if (!area) return;
+    if (kind === "link") {
+      setLinkSelection({ start: area.selectionStart, end: area.selectionEnd });
+      return;
+    }
     const next = applyMessageFormat(value, area.selectionStart, area.selectionEnd, kind);
     onChange(next.value);
-    requestAnimationFrame(() => {
-      area.focus();
-      area.setSelectionRange(next.start, next.end);
-    });
+    restoreSelection(next);
+  };
+
+  const closeLink = (next: Selection) => {
+    setLinkSelection(null);
+    restoreSelection(next);
   };
 
   return (
@@ -82,6 +100,18 @@ export function MessageEditor({ id, errorId, value, invalid, maxLength, messages
           className={`h-[200px] min-h-[120px] w-full resize-y rounded-b-lg border border-t-0 ${border} bg-white px-6 py-2 text-base leading-6 font-bold tracking-[0.15px] text-brand-bg placeholder:text-[#999] focus:outline-2 focus:outline-brand-border`}
         />
       </div>
+      {linkSelection && (
+        <AddLinkDialog
+          initialText={value.slice(linkSelection.start, linkSelection.end)}
+          messages={messages.addLink}
+          onClose={() => closeLink(linkSelection)}
+          onSave={(text, url) => {
+            const next = insertLink(value, linkSelection.start, linkSelection.end, text, url);
+            onChange(next.value);
+            closeLink(next);
+          }}
+        />
+      )}
       <p className="w-full text-center text-base leading-6 font-bold tracking-[0.5px] text-brand-bg">{messages.mentionHint}</p>
     </div>
   );

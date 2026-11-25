@@ -16,8 +16,4 @@ describe("applyMessageFormat", () => {
     expect(applyMessageFormat("one\ntwo", 0, 7, "numbered")).toEqual({ value: "1. one\n2. two", start: 0, end: 13 });
     expect(applyMessageFormat("say\nthis", 5, 6, "quote")).toEqual({ value: "say\n> this", start: 4, end: 10 });
   });
-
-  it("wraps the selection as a link template", () => {
-    expect(applyMessageFormat("see docs", 4, 8, "link")).toEqual({ value: "see [docs](https://)", start: 11, end: 19 });
-  });
 });
