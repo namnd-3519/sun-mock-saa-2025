@@ -8,7 +8,7 @@ Sun* internal "Agentic Coding Hands-on" exercise (template: `sun-asterisk-intern
 
 Scope (feature list, estimate in hours): Login 3, Homepage SAA 3, Hệ thống giải 3, Countdown Prelaunch 3, Đa ngôn ngữ (VN/EN) 3, Sun* Kudos 16, Viết Kudos 3, Like Kudos 6 (total 40). Platform: **web** (the web/desktop frames on MoMorph, not the `[iOS]` ones).
 
-No git commits yet (branch `master`; PR target branch is `main`). The only app is `web/` (Next.js 16 App Router + React 19 + TypeScript + Tailwind 4, pnpm, i18n by hand in `web/src/i18n/`, locale cookie `NEXT_LOCALE`). Run from `web/`: `pnpm dev`, `pnpm build`, `pnpm lint`, `pnpm typecheck`, `pnpm test` (vitest, unit only; there is no `@playwright/test` runner). Next 16 has breaking changes: read `web/node_modules/next/dist/docs/` before writing Next code. No backend yet.
+No git commits yet (branch `master`; PR target branch is `main`). The only app is `web/` (Next.js 16 App Router + React 19 + TypeScript + Tailwind 4, pnpm, i18n by hand in `web/src/i18n/`, locale cookie `NEXT_LOCALE`). Run from `web/`: `pnpm dev`, `pnpm build`, `pnpm lint`, `pnpm typecheck`, `pnpm test` (vitest: `*.test.ts` on node, `*.test.tsx` component tests on jsdom + Testing Library; there is no `@playwright/test` runner). Next 16 has breaking changes: read `web/node_modules/next/dist/docs/` before writing Next code. No backend yet.
 
 Suggested (not mandated) next steps: Supabase (database, auth, realtime; runs locally via Docker) as backend for Google OAuth and Kudos; Cloudflare Workers via OpenNext (https://opennext.js.org/cloudflare) for deploy.
 
