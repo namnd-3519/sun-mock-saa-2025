@@ -4,3 +4,6 @@
 # <<< tkm managed
 
 .env*
+
+# playwright mcp output
+.playwright-mcp/
