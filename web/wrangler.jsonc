@@ -1,0 +1,28 @@
+// Cloudflare Workers config for the OpenNext build of web/.
+// Never put account_id, secrets or env values here: see docs/deploy-cloudflare.md.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "saa-2025-web",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-20",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      // Self-reference used by OpenNext for caching; must match "name".
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "saa-2025-web"
+    }
+  ],
+  "images": {
+    // next/image optimization through Cloudflare Images.
+    // See https://opennext.js.org/cloudflare/howtos/image
+    "binding": "IMAGES"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
