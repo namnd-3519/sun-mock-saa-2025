@@ -42,6 +42,20 @@ export const kudosVi = {
   openGift: "Mở quà",
   giftReceiversTitle: "10 SUNNER NHẬN QUÀ MỚI NHẤT",
   giftReceived: "Nhận được 1 {badge}",
+  secretBox: {
+    title: "KHÁM PHÁ SECRET BOX CỦA BẠN",
+    close: "Đóng",
+    hint: "Click vào box để mở",
+    openBox: "Mở Secret Box",
+    opening: "Đang mở...",
+    received: "Bạn nhận được huy hiệu {badge}!",
+    unopened: "Secretbox chưa mở",
+    errors: {
+      no_unopened_box: "Bạn không còn Secret Box nào chưa mở.",
+      not_authenticated: "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+      unknown: "Không mở được Secret Box. Vui lòng thử lại.",
+    },
+  },
 };
 
 export type KudosMessages = typeof kudosVi;
@@ -89,4 +103,18 @@ export const kudosEn: KudosMessages = {
   openGift: "Open gift",
   giftReceiversTitle: "10 LATEST SUNNERS TO RECEIVE GIFTS",
   giftReceived: "Received 1 {badge}",
+  secretBox: {
+    title: "DISCOVER YOUR SECRET BOX",
+    close: "Close",
+    hint: "Click the box to open it",
+    openBox: "Open Secret Box",
+    opening: "Opening...",
+    received: "You received the {badge} badge!",
+    unopened: "Unopened Secret Boxes",
+    errors: {
+      no_unopened_box: "You have no unopened Secret Box left.",
+      not_authenticated: "Your session has expired. Please sign in again.",
+      unknown: "Could not open the Secret Box. Please try again.",
+    },
+  },
 };

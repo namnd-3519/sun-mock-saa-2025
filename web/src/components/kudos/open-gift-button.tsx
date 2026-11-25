@@ -4,7 +4,7 @@ import { IconGift } from "./kudos-icons";
 
 type OpenGiftButtonProps = { label: string; disabled: boolean; onOpen?: () => void };
 
-/** D.1.8 "Mở quà": disabled without unopened boxes; the dialog comes with task #18. */
+/** D.1.8 "Mở quà": disabled without unopened boxes; opens the Secret Box dialog. */
 export function OpenGiftButton({ label, disabled, onOpen }: OpenGiftButtonProps) {
   return (
     <button

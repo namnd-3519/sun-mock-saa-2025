@@ -5,7 +5,7 @@ import { badgeLabel } from "@/lib/kudos-live/kudos-format";
 import { profileHref } from "@/lib/kudos-live/kudos-links";
 import { KudosAvatar } from "./kudos-avatar";
 import { KudosStatsList } from "./kudos-stats-list";
-import { OpenGiftButton } from "./open-gift-button";
+import { OpenSecretBoxAction } from "./open-secret-box-action";
 
 type KudosSidebarProps = { stats: KudosStats | null; giftReceivers: GiftReceiver[]; messages: KudosMessages };
 
@@ -17,7 +17,7 @@ export function KudosSidebar({ stats, giftReceivers, messages }: KudosSidebarPro
     <aside className="flex w-full flex-col gap-6 lg:sticky lg:top-28 lg:w-[422px] lg:shrink-0">
       <div className={`${boxClass} gap-4`}>
         <KudosStatsList stats={stats} labels={messages.stats} />
-        <OpenGiftButton label={messages.openGift} disabled={!stats || stats.boxesUnopened === 0} />
+        <OpenSecretBoxAction label={messages.openGift} stats={stats} messages={messages.secretBox} />
       </div>
       <section aria-labelledby="gift-receivers" className={`${boxClass} gap-4 pr-4`}>
         <h2 id="gift-receivers" className="text-center text-[22px] leading-7 font-bold text-brand-accent">
