@@ -23,8 +23,8 @@ Chỉ liệt kê màn web (bỏ các frame `[iOS]`) và màn đã có spec (số
 | Đa ngôn ngữ (VN/EN) | 3 | Dropdown-ngôn ngữ | `hUyaaugye2` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/hUyaaugye2 | làm dở (có ở Login) |
 | Sun* Kudos | 16 | Sun* Kudos - Live board | `MaZUn5xHXZ` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/MaZUn5xHXZ | xong (`/kudos`: feed realtime + infinite scroll, highlight, spotlight tĩnh, sidebar; like/dropdown/hover/secret box chờ task riêng) |
 | Sun* Kudos | 16 | Profile bản thân | `3FoIx6ALVb` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/3FoIx6ALVb | xong (`/profile`: thông tin, bộ sưu tập icon, thống kê, Kudos đã nhận/đã gửi `?box=`; `/profile/{id}` của mình chuyển về `/profile`, người khác 404; Spam và hộp quà chờ task riêng) |
-| Sun* Kudos | 16 | Dropdown Hashtag filter | `JWpsISMAaM` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/JWpsISMAaM | chưa làm |
-| Sun* Kudos | 16 | Dropdown Phòng ban | `WXK5AYB_rG` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/WXK5AYB_rG | chưa làm |
+| Sun* Kudos | 16 | Dropdown Hashtag filter | `JWpsISMAaM` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/JWpsISMAaM | xong (`/kudos`, `?hashtag=`, `FilterDropdown`) |
+| Sun* Kudos | 16 | Dropdown Phòng ban | `WXK5AYB_rG` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/WXK5AYB_rG | xong (`/kudos`, `?department=`, `FilterDropdown`) |
 | Sun* Kudos | 16 | Hover Avatar info user | `Bf5XiTE7AO` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Bf5XiTE7AO | chưa làm |
 | Sun* Kudos | 16 | Open secret box - chưa mở | `J3-4YFIpMM` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/J3-4YFIpMM | chưa làm |
 | Viết Kudos | 3 | Viết Kudo | `ihQ26W78P2` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/ihQ26W78P2 | chưa làm |
@@ -41,5 +41,7 @@ Chỉ liệt kê màn web (bỏ các frame `[iOS]`) và màn đã có spec (số
 | Thể lệ UPDATE | `b1Filzi9i6` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/b1Filzi9i6 |
 | C_Filter | `7zur22HAsh` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/7zur22HAsh |
 | Tất cả thông báo | `6-1LRz3vqr` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/6-1LRz3vqr |
+
+C_Filter (`7zur22HAsh`) là thanh bộ lọc của Live board (nút Hashtag + Phòng ban), không phải bộ lọc riêng: dùng chung `KudosFilterButtons` → `HashtagFilter` / `DepartmentFilter` → `FilterDropdown` (`web/src/components/kudos/`). Frame không có design data trên MoMorph; giá trị hiển thị lấy theo JWpsISMAaM và WXK5AYB_rG. Không dùng cho form Viết Kudo (`HashtagDropdown`, chọn nhiều).
 
 Cập nhật danh sách bằng MCP `list_screens` khi MoMorph có màn mới.

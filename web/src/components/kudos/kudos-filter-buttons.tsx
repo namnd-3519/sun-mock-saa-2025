@@ -13,7 +13,10 @@ type KudosFilterButtonsProps = {
   messages: KudosMessages;
 };
 
-/** B.1.1 Hashtag (#13) and B.1.2 Phòng ban (#14) dropdowns; each pushes its own URL param. */
+/**
+ * C_Filter bar (MoMorph 7zur22HAsh): B.1.1 Hashtag (#13) and B.1.2 Phòng ban (#14) dropdowns, both on the
+ * shared `FilterDropdown`; each pushes its own URL param and the two combine (AND) for the whole board.
+ */
 export function KudosFilterButtons({ filters, hashtags, departments, messages }: KudosFilterButtonsProps) {
   return (
     <div className="flex flex-wrap items-center gap-2">
