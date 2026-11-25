@@ -14,7 +14,11 @@ const vi = {
     error: "Đăng nhập không thành công. Vui lòng thử lại.",
   },
   footer: { copyright: "Bản quyền thuộc về Sun* © 2025" },
-  auth: { signOut: "Đăng xuất" },
+  profileMenu: {
+    profile: "Hồ sơ",
+    dashboard: "Dashboard",
+    logout: "Đăng xuất",
+  },
   language: { label: "Chọn ngôn ngữ", vi: "Tiếng Việt", en: "English" },
   nav: {
     about: "About SAA 2025",
@@ -57,7 +61,11 @@ const en: Messages = {
     error: "Login failed. Please try again.",
   },
   footer: { copyright: "Copyright belongs to Sun* © 2025" },
-  auth: { signOut: "Sign out" },
+  profileMenu: {
+    profile: "Profile",
+    dashboard: "Dashboard",
+    logout: "Logout",
+  },
   language: { label: "Select language", vi: "Tiếng Việt", en: "English" },
   nav: {
     about: "About SAA 2025",

@@ -4,8 +4,8 @@ import { resolveAuthRedirect } from "./resolve-auth-redirect";
 describe("resolveAuthRedirect", () => {
   it("sends a signed-out visitor of a protected page to login with next", () => {
     expect(
-      resolveAuthRedirect({ pathname: "/todo", search: "?a=1", isSignedIn: false }),
-    ).toBe("/login?next=%2Ftodo%3Fa%3D1");
+      resolveAuthRedirect({ pathname: "/profile", search: "?a=1", isSignedIn: false }),
+    ).toBe("/login?next=%2Fprofile%3Fa%3D1");
   });
 
   it("omits next for the site root", () => {
@@ -53,7 +53,7 @@ describe("resolveAuthRedirect", () => {
 
   it("lets a signed-in visitor through to protected pages", () => {
     expect(
-      resolveAuthRedirect({ pathname: "/todo", search: "", isSignedIn: true }),
+      resolveAuthRedirect({ pathname: "/profile", search: "", isSignedIn: true }),
     ).toBeNull();
   });
 });

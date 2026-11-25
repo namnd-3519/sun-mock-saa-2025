@@ -10,7 +10,7 @@ describe("isPublicPath", () => {
 
   it("treats every other page as protected", () => {
     expect(isPublicPath("/")).toBe(false);
-    expect(isPublicPath("/todo")).toBe(false);
+    expect(isPublicPath("/profile")).toBe(false);
     expect(isPublicPath("/login-help")).toBe(false);
     expect(isPublicPath("/authors")).toBe(false);
     expect(isPublicPath("/countdown-old")).toBe(false);

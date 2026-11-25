@@ -1,8 +1,9 @@
 export const LOGIN_PATH = "/login";
 // The homepage (About SAA 2025) is where users land after signing in.
 export const AFTER_LOGIN_PATH = "/";
-// Holds the sign-out form until the profile dropdown replaces it.
-export const ACCOUNT_PLACEHOLDER_PATH = "/todo";
+// Own profile page (task #17) and the admin dashboard (route not built yet).
+export const PROFILE_PATH = "/profile";
+export const ADMIN_DASHBOARD_PATH = "/admin";
 export const CALLBACK_PATH = "/auth/callback";
 export const SIGN_OUT_PATH = "/auth/sign-out";
 export const COUNTDOWN_PATH = "/countdown";
