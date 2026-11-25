@@ -343,7 +343,7 @@
         "testStrategy": "pnpm test:coverage exits 0 with thresholds enforced; a deliberately removed test drops coverage below threshold and fails the run; pnpm typecheck and pnpm lint green.",
         "priority": "high",
         "dependencies": [],
-        "status": "pending",
+        "status": "in-progress",
         "subtasks": []
       },
       {
