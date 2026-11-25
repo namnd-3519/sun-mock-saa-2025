@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { Messages } from "@/i18n/messages";
-import { LanguageSwitcher } from "./language-switcher";
+import { LanguageSwitcher } from "@/components/language-switcher/language-switcher";
 import { SunLogo } from "./sun-logo";
 
 type LoginHeaderProps = { locale: Locale; messages: Messages["language"] };
