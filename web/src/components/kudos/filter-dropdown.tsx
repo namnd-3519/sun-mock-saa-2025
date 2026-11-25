@@ -13,6 +13,8 @@ type FilterDropdownProps = {
   /** Called with the picked id, or null when the selected option is clicked again (toggle off). */
   onSelect: (id: string | null) => void;
   emptyLabel?: string;
+  /** Width of the open list; the department frame is narrower than the hashtag one. */
+  listClassName?: string;
 };
 
 const BUTTON_CLASS =
@@ -25,7 +27,14 @@ const OPTION_CLASS =
  * Picking an option closes the list; picking the selected one again clears the filter.
  * Shared by the Hashtag (#13) and Phòng ban (#14) filters.
  */
-export function FilterDropdown({ label, options, selectedId, onSelect, emptyLabel }: FilterDropdownProps) {
+export function FilterDropdown({
+  label,
+  options,
+  selectedId,
+  onSelect,
+  emptyLabel,
+  listClassName = "min-w-[215px]",
+}: FilterDropdownProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -94,7 +103,7 @@ export function FilterDropdown({ label, options, selectedId, onSelect, emptyLabe
           id={listId}
           role="listbox"
           aria-label={label}
-          className="absolute top-full right-0 z-30 mt-1 flex max-h-[410px] min-w-[215px] flex-col overflow-y-auto rounded-lg border border-brand-border bg-brand-container-2 p-1.5 shadow-lg"
+          className={`absolute top-full right-0 z-30 mt-1 flex max-h-[410px] flex-col overflow-y-auto rounded-lg border border-brand-border bg-brand-container-2 p-1.5 shadow-lg ${listClassName}`}
         >
           {options.length === 0 && emptyLabel ? (
             <p className="p-4 text-base leading-6 whitespace-nowrap text-white/70">{emptyLabel}</p>

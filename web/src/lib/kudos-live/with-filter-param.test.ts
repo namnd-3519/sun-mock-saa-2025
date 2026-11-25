@@ -31,3 +31,27 @@ describe("withFilterParam (hashtag dropdown → feed query)", () => {
     });
   });
 });
+
+describe("withFilterParam (department dropdown → feed query)", () => {
+  it("adds the department and keeps the hashtag and unrelated params", () => {
+    const params = new URLSearchParams(withFilterParam(`?hashtag=${H}&utm=x`, DEPARTMENT_PARAM, D));
+    expect(params.get(DEPARTMENT_PARAM)).toBe(D);
+    expect(params.get(HASHTAG_PARAM)).toBe(H);
+    expect(params.get("utm")).toBe("x");
+  });
+
+  it("replaces a previously picked department", () => {
+    const D2 = "44444444-4444-4444-8444-444444444444";
+    expect(withFilterParam(`?department=${D}`, DEPARTMENT_PARAM, D2)).toBe(`?department=${D2}`);
+  });
+
+  it("removes only the department when the active option is clicked again", () => {
+    expect(withFilterParam(`?hashtag=${H}&department=${D}`, DEPARTMENT_PARAM, null)).toBe(`?hashtag=${H}`);
+    expect(withFilterParam(`?department=${D}`, DEPARTMENT_PARAM, null)).toBe("");
+  });
+
+  it("produces a search the board parses into a recipient-department filter", () => {
+    const search = withFilterParam("", DEPARTMENT_PARAM, D);
+    expect(parseKudosFilters(Object.fromEntries(new URLSearchParams(search)))).toEqual({ departmentId: D });
+  });
+});

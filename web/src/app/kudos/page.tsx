@@ -31,7 +31,13 @@ export default async function KudosLiveBoardPage({ searchParams }: PageProps<"/k
         <KudosLikesProvider errorMessage={m.likeError}>
           <div className="flex w-full flex-col gap-16">
             <KudosHero messages={m} />
-            <HighlightSection cards={data.highlight} filters={filters} hashtags={data.hashtags} messages={m} />
+            <HighlightSection
+              cards={data.highlight}
+              filters={filters}
+              hashtags={data.hashtags}
+              departments={data.departments}
+              messages={m}
+            />
           </div>
           <SpotlightBoard total={data.total} names={data.spotlightNames} messages={m} />
           <AllKudosSection data={data} filters={filters} messages={m} />

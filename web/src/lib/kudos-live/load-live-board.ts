@@ -1,6 +1,6 @@
 import { countKudos, listHighlightKudos, listKudosFeed } from "@/lib/kudos/kudos-queries";
-import { listHashtags } from "@/lib/kudos/reference-data";
-import type { GiftReceiver, Hashtag, KudosClient, KudosFilters, KudosStats } from "@/lib/kudos/kudos-types";
+import { listDepartments, listHashtags } from "@/lib/kudos/reference-data";
+import type { Department, GiftReceiver, Hashtag, KudosClient, KudosFilters, KudosStats } from "@/lib/kudos/kudos-types";
 import { getMyKudosStats, listRecentGiftReceivers } from "@/lib/kudos/secret-box";
 import { withKudosImageUrls, type KudosCardView } from "./kudos-card-view";
 
@@ -14,19 +14,21 @@ export type LiveBoardData = {
   stats: KudosStats | null;
   giftReceivers: GiftReceiver[];
   hashtags: Hashtag[];
+  departments: Department[];
 };
 
 /** Everything the first render of /kudos needs, fetched in parallel. Feed errors throw. */
 export async function loadLiveBoard(client: KudosClient, filters: KudosFilters): Promise<LiveBoardData> {
-  const [highlight, page, total, stats, giftReceivers, hashtags] = await Promise.all([
+  const [highlight, page, total, stats, giftReceivers, hashtags, departments] = await Promise.all([
     listHighlightKudos(client, filters),
     listKudosFeed(client, { filters, limit: FIRST_PAGE_SIZE }),
     countKudos(client, filters),
     // The sidebar must not take the board down: it shows "—" without stats.
     getMyKudosStats(client).catch(() => null),
     listRecentGiftReceivers(client).catch(() => []),
-    // Without hashtags the filter shows an empty list; the board itself still renders.
+    // Without hashtags or departments a filter shows an empty list; the board itself still renders.
     listHashtags(client).catch(() => []),
+    listDepartments(client).catch(() => []),
   ]);
   const [highlightViews, feedViews] = await Promise.all([
     withKudosImageUrls(client, highlight),
@@ -41,5 +43,6 @@ export async function loadLiveBoard(client: KudosClient, filters: KudosFilters):
     stats,
     giftReceivers,
     hashtags,
+    departments,
   };
 }
