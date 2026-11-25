@@ -10,7 +10,7 @@ Web app for the **SAA 2025** (Sun* Annual Awards) event, built for the Sun* inte
 | Homepage SAA, Hệ thống giải, Countdown Prelaunch | Not started |
 | Sun* Kudos, Viết Kudos, Like Kudos | Not started |
 
-There is no backend yet. Planned: Supabase (database, auth, realtime) and Cloudflare Workers via OpenNext for deployment.
+Backend: a local Supabase project in `backend/` (database, auth, realtime), wired into `web/` through `@supabase/ssr`. Planned: Cloudflare Workers via OpenNext for deployment.
 
 ## Tech stack
 
@@ -26,6 +26,35 @@ pnpm install
 pnpm dev        # http://localhost:3000 (redirects to /login)
 ```
 
+## Local backend (Supabase)
+
+Prerequisites: Docker running and the [Supabase CLI](https://supabase.com/docs/guides/local-development/cli/getting-started).
+
+```bash
+cd backend
+supabase start      # first run pulls the Docker images
+supabase status     # prints Project URL, Publishable key, Studio URL
+supabase stop       # stop containers, keep data
+supabase db reset   # recreate the database from migrations + seed.sql
+```
+
+| Service | URL |
+|---|---|
+| API (`NEXT_PUBLIC_SUPABASE_URL`) | http://127.0.0.1:54321 |
+| Studio | http://127.0.0.1:54323 |
+| Mailpit (auth emails) | http://127.0.0.1:54324 |
+| Postgres | `127.0.0.1:54322` (connection string: `supabase status`) |
+
+Then point the web app at it:
+
+```bash
+cp web/.env.example web/.env.local   # fill NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY from `supabase status`
+```
+
+New migrations: `supabase migration new <name>` (in `backend/`), then `supabase db reset`. Clients live in `web/src/lib/supabase/` (`createSupabaseServerClient` for Server Components, Route Handlers and Server Actions; `createSupabaseBrowserClient` for Client Components). The `supabase` MCP server in `.mcp.json` connects only while the stack is running.
+
+## Web scripts
+
 Other scripts (run from `web/`):
 
 | Command | Purpose |
@@ -38,11 +67,12 @@ Other scripts (run from `web/`):
 ## Repository layout
 
 ```
-web/        Next.js app (src/app, src/components, src/i18n)
+web/        Next.js app (src/app, src/components, src/i18n, src/lib/supabase)
+backend/    Supabase local project (supabase/config.toml, migrations, seed.sql)
 docs/       Project documentation (placeholder)
 .claude/    Claude Code config and Takumi skills/rules
 .takumi/    Takumi kit config and agent outputs
-.mcp.json   MCP servers: momorph, playwright
+.mcp.json   MCP servers: momorph, playwright, task-master-ai, supabase
 ```
 
 ## Working with the design (MoMorph + Takumi)

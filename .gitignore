@@ -4,6 +4,7 @@
 # <<< tkm managed
 
 .env*
+!.env.example
 
 # task-master local state (tasks.json and config.json stay tracked)
 .taskmaster/state.json
