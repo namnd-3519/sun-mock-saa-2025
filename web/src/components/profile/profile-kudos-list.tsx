@@ -38,6 +38,7 @@ export function ProfileKudosList({ userId, box, initial, emptyMessage, messages 
               messages={messages}
               onToggleLike={likes.toggle}
               likePending={likes.isPending(card.id)}
+              viewerId={userId}
             />
           </li>
         ))}

@@ -56,6 +56,10 @@ export const kudosVi = {
       unknown: "Không mở được Secret Box. Vui lòng thử lại.",
     },
   },
+  hoverCard: {
+    received: "Số Kudos nhận được:",
+    viewProfile: "Xem trang cá nhân",
+  },
 };
 
 export type KudosMessages = typeof kudosVi;
@@ -116,5 +120,9 @@ export const kudosEn: KudosMessages = {
       not_authenticated: "Your session has expired. Please sign in again.",
       unknown: "Could not open the Secret Box. Please try again.",
     },
+  },
+  hoverCard: {
+    received: "Kudos received:",
+    viewProfile: "View profile",
   },
 };

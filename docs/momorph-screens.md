@@ -25,7 +25,7 @@ Chỉ liệt kê màn web (bỏ các frame `[iOS]`) và màn đã có spec (số
 | Sun* Kudos | 16 | Profile bản thân | `3FoIx6ALVb` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/3FoIx6ALVb | xong (`/profile`: thông tin, bộ sưu tập icon, thống kê, Kudos đã nhận/đã gửi `?box=`; `/profile/{id}` của mình chuyển về `/profile`, người khác 404; Spam và hộp quà chờ task riêng) |
 | Sun* Kudos | 16 | Dropdown Hashtag filter | `JWpsISMAaM` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/JWpsISMAaM | xong (`/kudos`, `?hashtag=`, `FilterDropdown`) |
 | Sun* Kudos | 16 | Dropdown Phòng ban | `WXK5AYB_rG` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/WXK5AYB_rG | xong (`/kudos`, `?department=`, `FilterDropdown`) |
-| Sun* Kudos | 16 | Hover Avatar info user | `Bf5XiTE7AO` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Bf5XiTE7AO | chưa làm |
+| Sun* Kudos | 16 | Hover Avatar info user | `Bf5XiTE7AO` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Bf5XiTE7AO | xong (preview profile khi hover/focus/tap avatar hoặc tên trên thẻ Kudos ở `/kudos` và `/profile`: avatar viền #FFEA9E, tên, phòng ban, hoa thị, số Kudos nhận; người gửi ẩn danh không có preview; link `/profile` chỉ cho chính mình) |
 | Sun* Kudos | 16 | Open secret box - chưa mở | `J3-4YFIpMM` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/J3-4YFIpMM | chưa làm |
 | Viết Kudos | 3 | Viết Kudo | `ihQ26W78P2` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/ihQ26W78P2 | chưa làm |
 | Viết Kudos | 3 | Addlink Box | `OyDLDuSGEa` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/OyDLDuSGEa | chưa làm |

@@ -17,13 +17,13 @@ type KudosPostCardProps = KudosCardSlots & {
 };
 
 /** C.3 KUDO Post: one kudos in the All Kudos feed. */
-export function KudosPostCard({ card, filters, messages, onToggleLike, likePending }: KudosPostCardProps) {
+export function KudosPostCard({ card, filters, messages, onToggleLike, likePending, viewerId }: KudosPostCardProps) {
   return (
     <article
       id={kudosAnchorId(card.id)}
       className="flex w-full scroll-mt-28 flex-col gap-4 rounded-3xl bg-[#fff8e1] px-4 pt-6 pb-4 md:px-10 md:pt-10"
     >
-      <KudosPeopleRow card={card} messages={messages} />
+      <KudosPeopleRow card={card} viewerId={viewerId} messages={messages} />
       <KudosCardDivider />
       <div className="flex w-full flex-col gap-4">
         <time dateTime={card.createdAt} className="text-base leading-6 font-bold tracking-[0.5px] text-[#999]">
