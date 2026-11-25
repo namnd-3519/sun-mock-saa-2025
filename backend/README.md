@@ -29,6 +29,7 @@ kudos, kudos_hashtags, kudos_images, kudos_likes, special_days, secret_boxes), R
 `create_kudos` / `open_secret_box` / `get_my_kudos_stats` RPCs, the `kudos_feed` view, the
 private `kudos-images` bucket and the department/hashtag reference data.
 
+- Notifications: triggers on kudos, kudos_likes and secret_boxes write `notifications`; clients read their own rows and mark them read through `mark_notification_read` / `mark_all_notifications_read`. The heart recipient rule lives in `public.heart_recipient_of`.
 - Apply new migrations: `supabase migration up` (never `db reset` on the shared instance).
 - RLS tests (pgTAP, each file rolls back, no data left behind): `supabase test db`, or
   `./scripts/run-db-tests-with-psql.sh` when the pg_prove image cannot be pulled.
@@ -37,4 +38,4 @@ private `kudos-images` bucket and the department/hashtag reference data.
 
 Notes: `kudos.sender_id` and `profiles.email` are not readable by clients; read kudos through
 `kudos_feed`, which hides the sender of anonymous kudos. Secret boxes are granted by the service
-role only. The hearts-attribution rule lives only in `public.hearts_received_by`.
+role only. The hearts-attribution rule lives only in `public.heart_recipient_of`.

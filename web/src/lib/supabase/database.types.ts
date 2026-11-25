@@ -149,6 +149,26 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"notifications": {
+                  Row: {
+                    "created_at": string,"id": string,"is_read": boolean,"payload": NonNullable<Json>,"recipient_id": string,"type": Database["public"]['Enums']["notification_type"]
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"id"?: string,"is_read"?: boolean,"payload"?: NonNullable<Json>,"recipient_id": string,"type": Database["public"]['Enums']["notification_type"]
+                  }
+                  Update: {
+                    "created_at"?: string,"id"?: string,"is_read"?: boolean,"payload"?: NonNullable<Json>,"recipient_id"?: string,"type"?: Database["public"]['Enums']["notification_type"]
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "notifications_recipient_id_fkey"
+      columns: ["recipient_id"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"profiles": {
                   Row: {
                     "avatar_url": string | null,"created_at": string,"department_id": string | null,"email": string | null,"full_name": string | null,"id": string,"updated_at": string
@@ -237,6 +257,9 @@ isOneToOne: false
               "boxes_opened": number,"boxes_unopened": number,"hearts_received": number,"kudos_received": number,"kudos_sent": number
             }[]
                            },
+"heart_recipient_of":
+{ Args: { "p_kudos_id": string }; Returns: string
+                           },
 "hearts_received_by":
 { Args: { "p_user_id": string }; Returns: number
                            },
@@ -245,6 +268,12 @@ isOneToOne: false
                            },
 "kudos_person_json":
 { Args: { "p_profile_id": string }; Returns: Json
+                           },
+"mark_all_notifications_read":
+{ Args: Record<PropertyKey, never>; Returns: number
+                           },
+"mark_notification_read":
+{ Args: { "p_id": string }; Returns: boolean
                            },
 "open_secret_box":
 { Args: Record<PropertyKey, never>; Returns: {
@@ -256,7 +285,7 @@ isOneToOne: false
                            }
           }
           Enums: {
-            "secret_badge": "stay_gold"|"flow_to_horizon"|"beyond_the_boundary"|"root_further"|"touch_of_light"|"revival"
+            "notification_type": "kudos_received"|"heart_received"|"secret_box_available","secret_badge": "stay_gold"|"flow_to_horizon"|"beyond_the_boundary"|"root_further"|"touch_of_light"|"revival"
           }
           CompositeTypes: {
             [_ in never]: never
@@ -372,7 +401,7 @@ export type CompositeTypes<
 export const Constants = {
   "public": {
           Enums: {
-            "secret_badge": ["stay_gold", "flow_to_horizon", "beyond_the_boundary", "root_further", "touch_of_light", "revival"]
+            "notification_type": ["kudos_received", "heart_received", "secret_box_available"],"secret_badge": ["stay_gold", "flow_to_horizon", "beyond_the_boundary", "root_further", "touch_of_light", "revival"]
           }
         }
 } as const

@@ -2,6 +2,7 @@ import type { Locale } from "./config";
 import { awardsEn } from "./awards-messages-en";
 import { awardsVi } from "./awards-messages-vi";
 import { homeEn, homeVi } from "./home-messages";
+import { notificationsEn, notificationsVi } from "./notifications-messages";
 import { rulesEn, rulesVi } from "./rules-messages";
 import { kudosEn, kudosVi } from "./kudos-messages";
 
@@ -41,6 +42,7 @@ const vi = {
   home: homeVi,
   rules: rulesVi,
   awardsPage: awardsVi,
+  notifications: notificationsVi,
   kudos: kudosVi,
   countdown: {
     title: "Sự kiện sẽ bắt đầu sau",
@@ -88,6 +90,7 @@ const en: Messages = {
   home: homeEn,
   rules: rulesEn,
   awardsPage: awardsEn,
+  notifications: notificationsEn,
   kudos: kudosEn,
   countdown: {
     title: "Event starts in",

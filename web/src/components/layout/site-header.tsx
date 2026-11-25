@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Locale } from "@/i18n/config";
 import type { Messages } from "@/i18n/messages";
 import { LanguageSwitcher } from "@/components/language-switcher/language-switcher";
-import { IconBell } from "@/components/icons/icon-bell";
+import { NotificationBell } from "@/components/notifications/notification-bell";
 import { ProfileMenu } from "@/components/profile-menu/profile-menu";
 import { AccountMenu } from "@/components/profile-menu/account-menu";
 import { getProfileMenuItems } from "@/components/profile-menu/profile-menu-items";
@@ -27,10 +27,11 @@ export function SiteHeader({ locale, messages }: SiteHeaderProps) {
         </div>
       </div>
       <div className="flex items-center gap-2 md:gap-4">
-        {/* Slot: the notification panel and unread badge come with task "Tất cả thông báo". */}
-        <button type="button" aria-label={nav.notifications} className={ICON_BUTTON}>
-          <IconBell />
-        </button>
+        <NotificationBell
+          label={nav.notifications}
+          messages={messages.notifications}
+          className={ICON_BUTTON}
+        />
         <LanguageSwitcher locale={locale} messages={messages.language} />
         {/* Until the role is read, the menu shows the items every user has. */}
         <Suspense

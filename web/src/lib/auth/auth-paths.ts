@@ -7,6 +7,7 @@ export const ADMIN_DASHBOARD_PATH = "/admin";
 export const CALLBACK_PATH = "/auth/callback";
 export const SIGN_OUT_PATH = "/auth/sign-out";
 export const COUNTDOWN_PATH = "/countdown";
+export const NOTIFICATIONS_PATH = "/notifications";
 
 const AUTH_ROUTE_PREFIX = "/auth/";
 
