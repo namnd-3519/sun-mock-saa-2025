@@ -37,7 +37,11 @@ export async function listKudosFeed(
     .order("id", { ascending: false })
     .limit(limit);
   throwIfError(error);
-  const items = (data ?? []).map(mapKudosRow);
+  return toKudosPage((data ?? []).map(mapKudosRow), limit);
+}
+
+/** A page of cards with the keyset cursor of its last item; null once a page comes back short. */
+export function toKudosPage(items: KudosCard[], limit: number): KudosPage {
   const last = items.at(-1);
   const nextCursor =
     items.length === limit && last ? { createdAt: last.createdAt, id: last.id } : null;
@@ -79,22 +83,6 @@ export async function getKudosById(
     .maybeSingle();
   throwIfError(error);
   return data ? mapKudosRow(data) : null;
-}
-
-/** Kudos a given Sunner received (Profile page). */
-export async function listKudosReceivedBy(
-  client: KudosClient,
-  recipientId: string,
-  limit = 20,
-): Promise<KudosCard[]> {
-  const { data, error } = await client
-    .from(FEED)
-    .select("*")
-    .eq("recipient_id", recipientId)
-    .order("created_at", { ascending: false })
-    .limit(limit);
-  throwIfError(error);
-  return (data ?? []).map(mapKudosRow);
 }
 
 /** Current like count and the viewer's like, refetched when a Realtime like event arrives. */

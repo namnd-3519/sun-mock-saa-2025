@@ -6,6 +6,7 @@ import { notificationsEn, notificationsVi } from "./notifications-messages";
 import { rulesEn, rulesVi } from "./rules-messages";
 import { kudosEn, kudosVi } from "./kudos-messages";
 import { writeKudosEn, writeKudosVi } from "./write-kudos-messages";
+import { profileEn, profileVi } from "./profile-messages";
 
 const vi = {
   login: {
@@ -46,6 +47,7 @@ const vi = {
   notifications: notificationsVi,
   kudos: kudosVi,
   writeKudos: writeKudosVi,
+  profile: profileVi,
   countdown: {
     title: "Sự kiện sẽ bắt đầu sau",
     days: "NGÀY",
@@ -95,6 +97,7 @@ const en: Messages = {
   notifications: notificationsEn,
   kudos: kudosEn,
   writeKudos: writeKudosEn,
+  profile: profileEn,
   countdown: {
     title: "Event starts in",
     days: "DAYS",

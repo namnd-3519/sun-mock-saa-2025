@@ -22,7 +22,7 @@ Chỉ liệt kê màn web (bỏ các frame `[iOS]`) và màn đã có spec (số
 | Countdown Prelaunch | 3 | Countdown - Prelaunch page | `8PJQswPZmU` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/8PJQswPZmU | chưa làm |
 | Đa ngôn ngữ (VN/EN) | 3 | Dropdown-ngôn ngữ | `hUyaaugye2` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/hUyaaugye2 | làm dở (có ở Login) |
 | Sun* Kudos | 16 | Sun* Kudos - Live board | `MaZUn5xHXZ` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/MaZUn5xHXZ | xong (`/kudos`: feed realtime + infinite scroll, highlight, spotlight tĩnh, sidebar; like/dropdown/hover/secret box chờ task riêng) |
-| Sun* Kudos | 16 | Profile bản thân | `3FoIx6ALVb` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/3FoIx6ALVb | chưa làm |
+| Sun* Kudos | 16 | Profile bản thân | `3FoIx6ALVb` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/3FoIx6ALVb | xong (`/profile`: thông tin, bộ sưu tập icon, thống kê, Kudos đã nhận/đã gửi `?box=`; `/profile/{id}` của mình chuyển về `/profile`, người khác 404; Spam và hộp quà chờ task riêng) |
 | Sun* Kudos | 16 | Dropdown Hashtag filter | `JWpsISMAaM` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/JWpsISMAaM | chưa làm |
 | Sun* Kudos | 16 | Dropdown Phòng ban | `WXK5AYB_rG` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/WXK5AYB_rG | chưa làm |
 | Sun* Kudos | 16 | Hover Avatar info user | `Bf5XiTE7AO` | https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Bf5XiTE7AO | chưa làm |
