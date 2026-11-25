@@ -24,11 +24,22 @@ docs/  backend/  web/  ios/  android/
 |---|---|
 | `momorph` (HTTP, `https://app.momorph.ai/mcp`) | Screen specs, frame/node data, screen items. Auth: `Authorization: Bearer ${MOMORPH_API_KEY}`. |
 | `playwright` (`npx @playwright/mcp@latest`) | Browser automation / visual verification. Only the `tkm:ui-verifier` agent should drive it. |
+| `task-master-ai` (stdio, `npx -y task-master-ai@0.43.1`) | Task creation and tracking. AI features disabled, see "Task management". |
 
 - `MOMORPH_API_KEY` comes from the untracked `.env` / `.envrc`; never print or commit them.
 - Keep `.mcp.json` and `.codex/config.toml` in sync when adding or removing a server.
 - Screen ids come from `list_screens` (`screenId`, 10 characters, also accepted as `screen` by the spec and frame tools). Visual values come from MoMorph `list_frame_styles` (CSS per node), `get_frame_overview` and `download_screen_spec`; never guess colors, spacing or typography.
 - MoMorph holds no image, icon or media files and frame styles may be a V1 import not re-synced with Figma; rebuild simple icons as SVG, keep a CSS fallback for photos, and leave a slot for the real file.
+
+## Task management (Task Master MCP)
+
+Tasks and progress live in **`.taskmaster/tasks/tasks.json`, committed to git** (one task per MoMorph screen plus remaining work: Supabase, OAuth, Kudos data model, deploy). Use the `task-master-ai` MCP tools to read and change it; do not track work in ad-hoc TODO files.
+
+- **AI features are off.** `.mcp.json` sets `TASK_MASTER_TOOLS` to an explicit allowlist of 22 non-AI tools (`get_tasks`, `next_task`, `get_task`, `set_task_status`, `add_task`, `add_subtask`, `remove_*`, `move_task`, dependency and tag tools, `generate`, `initialize_project`). `parse_prd`, `expand_*`, `update*`, `analyze_project_complexity`, `research`, `scope_*` are not exposed. No provider API keys are configured; do not add them. Keep the allowlist when upgrading the package version.
+- Create tasks **manually**: pass `title`, `description`, `details`, `testStrategy`, `priority`, `dependencies` to `add_task`; never pass `prompt` or `research`. To change an existing task's text, edit `tasks.json` directly (keep the schema), then run `generate`.
+- Workflow: `next_task` → `set_task_status in-progress` → implement via the matching `/tkm:*` command (each task's `details` names it and the MoMorph URL) → `set_task_status done` **in the same commit** as the code, so the file is the version-controlled progress record.
+- Never commit `.taskmaster/state.json` or `.taskmaster/reports/` (git-ignored, per-user). Commit `tasks.json` and `config.json` only. Resolve merge conflicts in `tasks.json` by hand and keep task ids stable; run `validate_dependencies` afterwards.
+- New MoMorph screens (`list_screens`) get a new task; keep `docs/momorph-screens.md` in step.
 
 ## Takumi (`/tkm`) harness
 

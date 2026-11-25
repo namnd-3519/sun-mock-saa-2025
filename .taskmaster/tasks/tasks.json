@@ -1,0 +1,345 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Scaffold web app (Next 16, Tailwind 4, vitest, brand theme, i18n config)",
+        "description": "Foundation of web/: Next.js 16 App Router, React 19, TypeScript, Tailwind 4, pnpm, vitest, Montserrat fonts, brand theme, locale-aware layout, hand-rolled VN/EN i18n with NEXT_LOCALE cookie.",
+        "details": "Delivered in commits be2a869, 943012b, 6c480d6. Read web/node_modules/next/dist/docs before writing Next 16 code.",
+        "testStrategy": "pnpm typecheck, pnpm lint, pnpm test pass.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Login screen UI (GzbNeVGJHz)",
+        "description": "Login page UI with language switcher and Google button, per MoMorph spec. Estimate: 3h (feature list: Login).",
+        "details": "Delivered in commit 30ab557. OAuth is not wired yet (see the Google OAuth task). Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/GzbNeVGJHz",
+        "testStrategy": "Visual contract against the MoMorph frame.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Supabase local project (backend/) and web client wiring",
+        "description": "Create the Supabase local project (Docker) under backend/ and add the Supabase client + env handling in web/.",
+        "details": "supabase init in backend/, config.toml, migrations folder, seed.sql. Add @supabase/supabase-js + @supabase/ssr in web/, server and browser clients, .env.example with the required keys (never commit .env). Document local start/stop commands in README. Needed by auth and Kudos.",
+        "testStrategy": "supabase start succeeds locally; a unit test for the client factory; typecheck passes.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Login: Google OAuth via Supabase Auth",
+        "description": "Connect the Login screen's Google button to Supabase Auth (Google provider), add the OAuth callback route, session refresh and a route guard.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/GzbNeVGJHz. Cover the error/cancel path, already-signed-in redirect, sign-out, and unauthenticated redirect to Login. Domain restriction (Sun* accounts only?) is an open question for the clarification gate. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/GzbNeVGJHz",
+        "testStrategy": "Unit tests for the guard and callback handler (RED first); manual sign-in against local Supabase.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Multi-language VN/EN: language dropdown (hUyaaugye2)",
+        "description": "Finish the language dropdown component per spec and make it reusable across screens; keep the NEXT_LOCALE cookie behavior. Estimate: 3h (feature list: Đa ngôn ngữ).",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/hUyaaugye2. A partial switcher exists on Login; extract it to a shared component and verify it against the dropdown frame. Every later screen must add its strings to both VN and EN message files. UI: /tkm:momorph-implement-design https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/hUyaaugye2",
+        "testStrategy": "Unit tests for locale resolution and cookie helper; visual check of the dropdown states.",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Homepage SAA (i87tDx10uM)",
+        "description": "Build the Homepage SAA screen, including the shared header, footer and navigation used by later screens. Estimate: 3h (feature list: Homepage SAA).",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/i87tDx10uM. Extract header/footer as shared components so the other screens reuse them. Auth-protected. UI: /tkm:momorph-implement-design https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/i87tDx10uM",
+        "testStrategy": "Visual contract against the frame; component tests for header/nav.",
+        "priority": "high",
+        "dependencies": [
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Floating Action Buttons (_hphd32jN2, Sv7DFwBw1h)",
+        "description": "Build the floating action button widget and its expanded state, shown on Homepage SAA. Estimate: part of Homepage SAA (3h).",
+        "details": "Specs: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/_hphd32jN2 and https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Sv7DFwBw1h. Two frames of one widget (collapsed/expanded). UI: /tkm:momorph-implement-design https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/_hphd32jN2",
+        "testStrategy": "Visual contract for both states; interaction test for open/close.",
+        "priority": "medium",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Hệ thống giải screen (zFYDgyj_pD)",
+        "description": "Build the award-system screen. Estimate: 3h (feature list: Hệ thống giải).",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/zFYDgyj_pD. UI: /tkm:momorph-implement-design https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/zFYDgyj_pD",
+        "testStrategy": "Visual contract against the frame.",
+        "priority": "medium",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Thể lệ UPDATE screen (b1Filzi9i6) [outside feature list]",
+        "description": "Build the rules screen. Not in the feature list; schedule after the core features.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/b1Filzi9i6. UI: /tkm:momorph-implement-design https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/b1Filzi9i6",
+        "testStrategy": "Visual contract against the frame.",
+        "priority": "low",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Countdown - Prelaunch page (8PJQswPZmU)",
+        "description": "Build the prelaunch countdown page and the gating logic that shows it before the launch time. Estimate: 3h (feature list: Countdown Prelaunch).",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/8PJQswPZmU. Open questions for the clarification gate: launch date/time source (env var vs DB), timezone, what happens at zero. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/8PJQswPZmU",
+        "testStrategy": "Unit tests for the remaining-time calculation and the gating rule (before/at/after launch).",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Kudos data model and API (Supabase)",
+        "description": "Design and migrate the Kudos schema and expose it to the web app: profiles, departments, kudos, hashtags, kudos-hashtag links, likes, secret boxes; add RLS policies.",
+        "details": "Write SQL migrations in backend/supabase/migrations, RLS per table (own rows, read-all for kudos), seed data for departments/hashtags. Add typed data-access functions in web/. Safety-critical: schema, auth, permissions. Detail the exact columns from the Live board, Write Kudo and Profile specs before writing the migration.",
+        "testStrategy": "RLS tests against local Supabase (allowed and denied paths); unit tests for the data-access layer.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Sun* Kudos - Live board (MaZUn5xHXZ)",
+        "description": "Build the Live board: kudos feed with realtime updates, driven by the Kudos data model. Estimate: 16h shared across the Sun* Kudos feature (board, profile, filters, hover, secret box).",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/MaZUn5xHXZ. Supabase realtime for new kudos, pagination/infinite scroll, empty and loading states. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/MaZUn5xHXZ",
+        "testStrategy": "Unit tests for feed queries and realtime merge; visual contract plus one E2E happy path only if a Playwright runner exists.",
+        "priority": "high",
+        "dependencies": [
+          6,
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Dropdown Hashtag filter (JWpsISMAaM)",
+        "description": "Hashtag filter dropdown on the Live board, applied to the feed query.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/JWpsISMAaM. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/JWpsISMAaM",
+        "testStrategy": "Unit test for the filter-to-query mapping; visual contract for the dropdown.",
+        "priority": "medium",
+        "dependencies": [
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Dropdown Phòng ban (WXK5AYB_rG)",
+        "description": "Department filter dropdown on the Live board, applied to the feed query.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/WXK5AYB_rG. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/WXK5AYB_rG",
+        "testStrategy": "Unit test for the filter-to-query mapping; visual contract for the dropdown.",
+        "priority": "medium",
+        "dependencies": [
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Hover Avatar info user (Bf5XiTE7AO)",
+        "description": "Hover card showing user info over an avatar on the board.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Bf5XiTE7AO. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/Bf5XiTE7AO",
+        "testStrategy": "Component test for hover show/hide; visual contract for the card.",
+        "priority": "low",
+        "dependencies": [
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "Like Kudos",
+        "description": "Like and unlike a kudos from the Live board with optimistic update and realtime like count. Estimate: 6h (feature list: Like Kudos).",
+        "details": "Lives in the Live board frame (https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/MaZUn5xHXZ). One like per user per kudos (unique constraint), idempotent toggle, no self-like if the spec says so (confirm in the clarification gate). Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/MaZUn5xHXZ",
+        "testStrategy": "RED-first unit tests: like, unlike, double-like, concurrent toggle, unauthenticated; RLS test for the likes table.",
+        "priority": "high",
+        "dependencies": [
+          11,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 17,
+        "title": "Profile bản thân (3FoIx6ALVb)",
+        "description": "Own-profile screen showing the user's received and sent kudos and stats.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/3FoIx6ALVb. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/3FoIx6ALVb",
+        "testStrategy": "Unit tests for the profile queries; visual contract against the frame.",
+        "priority": "medium",
+        "dependencies": [
+          11,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 18,
+        "title": "Open secret box - chưa mở (J3-4YFIpMM)",
+        "description": "Secret box screen in its unopened state and the open action.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/J3-4YFIpMM. Rules for earning/opening a box are unknown: resolve in the clarification gate. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/J3-4YFIpMM",
+        "testStrategy": "Unit tests for the open rule (eligible, already opened, not eligible); visual contract for the state.",
+        "priority": "low",
+        "dependencies": [
+          11,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 19,
+        "title": "Viết Kudo (ihQ26W78P2)",
+        "description": "Write-kudos form: recipient, message, hashtags, links; validation and submit to Supabase. Estimate: 3h (feature list: Viết Kudos).",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/ihQ26W78P2. Validation, submit error and success states, and the post-submit redirect to the Live board. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/ihQ26W78P2",
+        "testStrategy": "RED-first unit tests for validation and the submit action; visual contract for the form.",
+        "priority": "high",
+        "dependencies": [
+          11,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 20,
+        "title": "Addlink Box (OyDLDuSGEa)",
+        "description": "Add-link popup used inside the Write Kudo form.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/OyDLDuSGEa. URL validation rules go through the clarification gate. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/OyDLDuSGEa",
+        "testStrategy": "Unit tests for URL validation; visual contract for the popup.",
+        "priority": "medium",
+        "dependencies": [
+          19
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 21,
+        "title": "Dropdown list hashtag (p9zO-c4a4x)",
+        "description": "Hashtag picker dropdown inside the Write Kudo form.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/p9zO-c4a4x. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/p9zO-c4a4x",
+        "testStrategy": "Unit tests for multi-select and max-count rules; visual contract for the dropdown.",
+        "priority": "medium",
+        "dependencies": [
+          19
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 22,
+        "title": "Dropdown-profile and Dropdown-profile Admin (z4sCl3_Qtk, 54rekaCHG1) [outside feature list]",
+        "description": "Profile menu in the header for normal users and for admins, including sign-out.",
+        "details": "Specs: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/z4sCl3_Qtk and https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/54rekaCHG1. Admin detection (role claim) is an open question. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/z4sCl3_Qtk",
+        "testStrategy": "Unit tests for role-based menu items and sign-out; visual contract for both variants.",
+        "priority": "low",
+        "dependencies": [
+          4,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 23,
+        "title": "Tất cả thông báo (6-1LRz3vqr) [outside feature list]",
+        "description": "Notification list screen.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/6-1LRz3vqr. Notification sources are not defined in the feature list: clarify before building. Behavior + UI: /tkm:takumi https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/6-1LRz3vqr",
+        "testStrategy": "Visual contract against the frame; data tests once the source is decided.",
+        "priority": "low",
+        "dependencies": [
+          6,
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 24,
+        "title": "C_Filter (7zur22HAsh) [outside feature list]",
+        "description": "Filter component frame found in MoMorph; confirm what it is used for before building.",
+        "details": "Spec: https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/7zur22HAsh. Check whether it overlaps with the hashtag and department filters and reuse a single component. UI: /tkm:momorph-implement-design https://app.momorph.ai/p/7e7f6eb3-f873-523b-9b5f-7ce50dc41fbc/screens/7zur22HAsh",
+        "testStrategy": "Visual contract against the frame.",
+        "priority": "low",
+        "dependencies": [
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 25,
+        "title": "Deploy to Cloudflare Workers via OpenNext",
+        "description": "Configure OpenNext for Cloudflare and deploy the web app with the Supabase environment variables.",
+        "details": "Follow https://opennext.js.org/cloudflare. Add wrangler config, build script, secrets via Wrangler (never in the repo). Confirm the Supabase target (hosted project) before deploying. Safety-critical: config/deploy.",
+        "testStrategy": "Production build and preview run locally; smoke test of Login and Homepage on the deployed URL.",
+        "priority": "medium",
+        "dependencies": [
+          4,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2026-11-25T12:51:40.546Z",
+      "updated": "2026-11-25T12:51:40.546Z",
+      "description": "SAA 2025 web: one task per MoMorph screen plus remaining work"
+    }
+  }
+}
