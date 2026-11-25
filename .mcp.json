@@ -19,6 +19,10 @@
         "TASK_MASTER_TOOLS": "initialize_project,get_tasks,next_task,get_task,set_task_status,add_task,add_subtask,remove_task,remove_subtask,clear_subtasks,move_task,add_dependency,remove_dependency,validate_dependencies,fix_dependencies,generate,list_tags,add_tag,use_tag,rename_tag,copy_tag,delete_tag"
       }
     },
+    "supabase": {
+      "type": "http",
+      "url": "http://localhost:54321/mcp"
+    },
     "momorph": {
       "type": "http",
       "url": "https://app.momorph.ai/mcp",

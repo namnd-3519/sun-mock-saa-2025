@@ -25,6 +25,7 @@ docs/  backend/  web/  ios/  android/
 | `momorph` (HTTP, `https://app.momorph.ai/mcp`) | Screen specs, frame/node data, screen items. Auth: `Authorization: Bearer ${MOMORPH_API_KEY}`. |
 | `playwright` (`npx @playwright/mcp@latest`) | Browser automation / visual verification. Only the `tkm:ui-verifier` agent should drive it. |
 | `task-master-ai` (stdio, `npx -y task-master-ai@0.43.1`) | Task creation and tracking. AI features disabled, see "Task management". |
+| `supabase` (HTTP, `http://localhost:54321/mcp`) | Local Supabase project only (database, migrations, SQL). Reachable only while `supabase start` is running; it shows as failed to connect otherwise. Development use only, never point it at production data. |
 
 - `MOMORPH_API_KEY` comes from the untracked `.env` / `.envrc`; never print or commit them.
 - Keep `.mcp.json` and `.codex/config.toml` in sync when adding or removing a server.

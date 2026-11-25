@@ -29,7 +29,7 @@
         "id": 3,
         "title": "Supabase local project (backend/) and web client wiring",
         "description": "Create the Supabase local project (Docker) under backend/ and add the Supabase client + env handling in web/.",
-        "details": "supabase init in backend/, config.toml, migrations folder, seed.sql. Add @supabase/supabase-js + @supabase/ssr in web/, server and browser clients, .env.example with the required keys (never commit .env). Document local start/stop commands in README. Needed by auth and Kudos.",
+        "details": "supabase init in backend/, config.toml, migrations folder, seed.sql. Add @supabase/supabase-js + @supabase/ssr in web/, server and browser clients, .env.example with the required keys (never commit .env). Document local start/stop commands in README. Needed by auth and Kudos. The `supabase` MCP server in .mcp.json (http://localhost:54321/mcp) only connects once `supabase start` is running.",
         "testStrategy": "supabase start succeeds locally; a unit test for the client factory; typecheck passes.",
         "priority": "high",
         "dependencies": [
