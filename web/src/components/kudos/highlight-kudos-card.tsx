@@ -17,7 +17,7 @@ type HighlightKudosCardProps = KudosCardSlots & {
 };
 
 /** B.3 KUDO - Highlight: carousel card, content clamped to 3 lines. */
-export function HighlightKudosCard({ card, filters, messages, onToggleLike }: HighlightKudosCardProps) {
+export function HighlightKudosCard({ card, filters, messages, onToggleLike, likePending }: HighlightKudosCardProps) {
   return (
     <article className="flex w-full flex-col gap-4 rounded-2xl border-4 border-brand-accent bg-[#fff8e1] px-4 pt-6 pb-4 md:px-6">
       <KudosPeopleRow card={card} messages={messages} />
@@ -54,7 +54,7 @@ export function HighlightKudosCard({ card, filters, messages, onToggleLike }: Hi
         <KudosHearts
           count={card.likeCount}
           liked={card.likedByMe}
-          disabled={card.isMine}
+          disabled={card.isMine || Boolean(likePending)}
           label={messages.hearts}
           onToggle={onToggleLike ? () => onToggleLike(card) : undefined}
         />

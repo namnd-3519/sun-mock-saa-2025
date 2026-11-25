@@ -6,6 +6,7 @@ import type { KudosFilters } from "@/lib/kudos/kudos-types";
 import type { KudosCardView } from "@/lib/kudos-live/kudos-card-view";
 import { canGoNext, canGoPrev, clampSlide, slideLabel } from "@/lib/kudos-live/highlight-carousel";
 import { HighlightKudosCard } from "./highlight-kudos-card";
+import { useKudosLikes } from "./kudos-likes-provider";
 import { IconChevronLeft, IconChevronRight } from "./kudos-icons";
 
 type HighlightCarouselProps = { cards: KudosCardView[]; filters: KudosFilters; messages: KudosMessages };
@@ -18,6 +19,7 @@ const arrowClass =
 /** B.2 carousel + B.5 pager. Remounted (key) when the filters change, so it restarts at 1. */
 export function HighlightCarousel({ cards, filters, messages }: HighlightCarouselProps) {
   const [index, setIndex] = useState(0);
+  const likes = useKudosLikes();
   const total = cards.length;
   const go = (next: number) => setIndex(clampSlide(next, total));
   const prev = (size: number, className: string) => (
@@ -46,7 +48,13 @@ export function HighlightCarousel({ cards, filters, messages }: HighlightCarouse
               style={{ width: CARD }}
               className={`shrink-0 transition-opacity duration-500 ${position === index ? "opacity-100" : "opacity-40"}`}
             >
-              <HighlightKudosCard card={card} filters={filters} messages={messages} />
+              <HighlightKudosCard
+                card={likes.view(card)}
+                filters={filters}
+                messages={messages}
+                onToggleLike={likes.toggle}
+                likePending={likes.isPending(card.id)}
+              />
             </li>
           ))}
         </ul>

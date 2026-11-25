@@ -96,3 +96,17 @@ export async function listKudosReceivedBy(
   throwIfError(error);
   return (data ?? []).map(mapKudosRow);
 }
+
+/** Current like count and the viewer's like, refetched when a Realtime like event arrives. */
+export async function getKudosLikeState(
+  client: KudosClient,
+  id: string,
+): Promise<Pick<KudosCard, "likeCount" | "likedByMe"> | null> {
+  const { data, error } = await client
+    .from(FEED)
+    .select("like_count, liked_by_me")
+    .eq("id", id)
+    .maybeSingle();
+  throwIfError(error);
+  return data ? { likeCount: data.like_count ?? 0, likedByMe: data.liked_by_me === true } : null;
+}

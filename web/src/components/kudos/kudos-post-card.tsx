@@ -17,7 +17,7 @@ type KudosPostCardProps = KudosCardSlots & {
 };
 
 /** C.3 KUDO Post: one kudos in the All Kudos feed. */
-export function KudosPostCard({ card, filters, messages, onToggleLike }: KudosPostCardProps) {
+export function KudosPostCard({ card, filters, messages, onToggleLike, likePending }: KudosPostCardProps) {
   return (
     <article
       id={kudosAnchorId(card.id)}
@@ -64,7 +64,7 @@ export function KudosPostCard({ card, filters, messages, onToggleLike }: KudosPo
         <KudosHearts
           count={card.likeCount}
           liked={card.likedByMe}
-          disabled={card.isMine}
+          disabled={card.isMine || Boolean(likePending)}
           label={messages.hearts}
           onToggle={onToggleLike ? () => onToggleLike(card) : undefined}
         />

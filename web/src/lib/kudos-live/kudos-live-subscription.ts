@@ -1,10 +1,11 @@
 import type { KudosFilters } from "@/lib/kudos/kudos-types";
 import { kudosFiltersKey } from "./kudos-filters";
 
-type InsertPayload = { new: Record<string, unknown> };
+/** Realtime change payload; DELETE events carry only the primary key in `old`. */
+export type ChangePayload = { new: Record<string, unknown>; old?: Record<string, unknown> };
 
 export type ChannelLike = {
-  on(type: "postgres_changes", filter: object, handler: (payload: InsertPayload) => void): ChannelLike;
+  on(type: "postgres_changes", filter: object, handler: (payload: ChangePayload) => void): ChannelLike;
   subscribe(callback?: (status: string) => void): unknown;
 };
 

@@ -5,8 +5,10 @@ import { IconSend } from "./kudos-icons";
 
 /** Shared props of the Highlight (B.3) and All Kudos (C.3) cards. */
 export type KudosCardSlots = {
-  /** Like toggle slot for task #16; hearts are read-only without it. */
+  /** Like toggle (KudosLikesProvider); hearts are read-only without it. */
   onToggleLike?: (card: KudosCard) => void;
+  /** A toggle of this kudos is in flight: the heart is temporarily disabled (C.4). */
+  likePending?: boolean;
 };
 
 /** Sender → recipient row (B.3.1–B.3.6, C.3.1–C.3.3). */

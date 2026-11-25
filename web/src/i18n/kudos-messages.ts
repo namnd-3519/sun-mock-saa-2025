@@ -19,6 +19,7 @@ export const kudosVi = {
   copied: "Link copied — ready to share!",
   details: "Xem chi tiết",
   hearts: "lượt thả tim",
+  likeError: "Không thả tim được. Vui lòng thử lại.",
   anonymous: "Ẩn danh",
   sentTo: "gửi tới",
   starsHint: {
@@ -63,6 +64,7 @@ export const kudosEn: KudosMessages = {
   copied: "Link copied — ready to share!",
   details: "View details",
   hearts: "hearts",
+  likeError: "Could not update the heart. Please try again.",
   anonymous: "Anonymous",
   sentTo: "sent to",
   starsHint: {

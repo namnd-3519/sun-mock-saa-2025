@@ -5,6 +5,7 @@ import {
   countKudos,
   cursorFilter,
   getKudosById,
+  getKudosLikeState,
   listHighlightKudos,
   listKudosFeed,
 } from "./kudos-queries";
@@ -102,5 +103,22 @@ describe("countKudos / getKudosById", () => {
     expect(methodsOf(calls)).toEqual(["from", "select", "contains", "eq", "eq", "maybeSingle"]);
     expect(calls[2].args).toEqual(["hashtag_ids", ["h1"]]);
     expect(calls[4].args).toEqual(["id", "k1"]);
+  });
+});
+
+describe("getKudosLikeState", () => {
+  it("reads only the count and the viewer's like through kudos_feed", async () => {
+    const { client, calls } = createFakeKudosClient({ data: { like_count: 7, liked_by_me: true } });
+    await expect(getKudosLikeState(client, "k1")).resolves.toEqual({ likeCount: 7, likedByMe: true });
+    expect(calls.slice(0, 3)).toEqual([
+      { method: "from", args: ["kudos_feed"] },
+      { method: "select", args: ["like_count, liked_by_me"] },
+      { method: "eq", args: ["id", "k1"] },
+    ]);
+  });
+
+  it("returns null when the kudos is not visible", async () => {
+    const { client } = createFakeKudosClient({ data: null });
+    await expect(getKudosLikeState(client, "k1")).resolves.toBeNull();
   });
 });

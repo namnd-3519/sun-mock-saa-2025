@@ -2,14 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { getKudosById, listKudosFeed } from "@/lib/kudos/kudos-queries";
-import type { KudosClient, KudosCursor, KudosFilters } from "@/lib/kudos/kudos-types";
+import type { KudosCursor, KudosFilters } from "@/lib/kudos/kudos-types";
 import { withKudosImageUrls, type KudosCardView } from "@/lib/kudos-live/kudos-card-view";
 import { appendPage, mergeFreshHead, prependKudos } from "@/lib/kudos-live/kudos-feed-state";
-import {
-  createKudosLiveSubscription,
-  type ChannelLike,
-  type RealtimeLike,
-} from "@/lib/kudos-live/kudos-live-subscription";
+import { createKudosLiveSubscription } from "@/lib/kudos-live/kudos-live-subscription";
+import { authorizeRealtime, realtimeOf } from "@/lib/kudos-live/supabase-realtime-adapter";
 import { createSupabaseBrowserClient } from "@/lib/supabase/create-supabase-browser-client";
 
 export const FEED_PAGE_SIZE = 10;
@@ -20,16 +17,6 @@ type UseKudosFeedOptions = {
   initial: { items: KudosCardView[]; nextCursor: KudosCursor | null };
   filters: KudosFilters;
 };
-
-function realtimeOf(client: KudosClient): RealtimeLike {
-  return {
-    channel(name) {
-      const channel = client.channel(name);
-      // RealtimeChannel's overloaded `on` is wider than ChannelLike; only INSERT is used.
-      return { channel: channel as unknown as ChannelLike, remove: () => void client.removeChannel(channel) };
-    },
-  };
-}
 
 /**
  * All Kudos feed: infinite scroll (keyset cursor) plus Realtime inserts merged on top.
@@ -94,10 +81,8 @@ export function useKudosFeed({ initial, filters: filtersProp }: UseKudosFeedOpti
       (id) => void onInsert(id).catch(() => undefined),
       () => void onReady().catch(() => undefined),
     );
-    // Realtime must run as the signed-in user so RLS applies to change events.
     void (async () => {
-      const { data } = await client.auth.getSession();
-      if (data.session) await client.realtime.setAuth(data.session.access_token);
+      await authorizeRealtime(client);
       if (!cancelled) live.setFilters(filters);
     })();
     return () => {

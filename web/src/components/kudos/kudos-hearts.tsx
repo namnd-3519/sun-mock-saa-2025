@@ -7,7 +7,7 @@ type KudosHeartsProps = {
   /** The sender cannot like their own kudos (C.4.1). */
   disabled: boolean;
   label: string;
-  /** Like toggle slot, wired by task #16; read-only until then. */
+  /** Like toggle; read-only without it. */
   onToggle?: () => void;
 };
 
