@@ -42,3 +42,15 @@ export function hasActiveFilters(filters: KudosFilters): boolean {
 export function kudosFiltersKey(filters: KudosFilters): string {
   return `${filters.hashtagId ?? ""}|${filters.departmentId ?? ""}`;
 }
+
+/**
+ * Search string after setting (or, with null, removing) one filter param. Every other param in
+ * `currentSearch` is kept, so the Hashtag and Phòng ban dropdowns never undo each other.
+ */
+export function withFilterParam(currentSearch: string, param: string, value: string | null): string {
+  const params = new URLSearchParams(currentSearch);
+  if (value) params.set(param, value);
+  else params.delete(param);
+  const query = params.toString();
+  return query ? `?${query}` : "";
+}
