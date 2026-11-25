@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     // Cloudflare build output.
     ".open-next/**",
     ".wrangler/**",
+    // Vitest coverage report (pnpm test:coverage).
+    "coverage/**",
   ]),
 ]);
 
