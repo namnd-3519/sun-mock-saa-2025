@@ -17,6 +17,10 @@ const eslintConfig = defineConfig([
     ".wrangler/**",
     // Vitest coverage report (pnpm test:coverage).
     "coverage/**",
+    // Playwright output and E2E dev builds (pnpm test:e2e).
+    "test-results/**",
+    "playwright-report/**",
+    ".next-e2e*/**",
   ]),
 ]);
 
