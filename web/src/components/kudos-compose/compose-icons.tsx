@@ -39,3 +39,6 @@ export const CloseIcon = (p: IconProps) => (
 export const SendIcon = (p: IconProps) => (
   <Svg {...p}><path d="M4 5l16 7-16 7 3-7zM7 12h13" /></Svg>
 );
+export const CheckCircleIcon = (p: IconProps) => (
+  <Svg {...p}><circle cx="12" cy="12" r="9" strokeWidth={1.5} /><path d="M8 12.5l2.5 2.5L16 9.5" strokeWidth={1.8} /></Svg>
+);

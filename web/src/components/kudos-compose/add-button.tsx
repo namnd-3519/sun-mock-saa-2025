@@ -1,12 +1,25 @@
+import type { Ref } from "react";
 import { PlusIcon } from "./compose-icons";
 
-type AddButtonProps = { label: string; note: string; onClick: () => void; expanded?: boolean; describedBy?: string };
+type AddButtonProps = {
+  label: string;
+  note: string;
+  onClick: () => void;
+  expanded?: boolean;
+  describedBy?: string;
+  controls?: string;
+  hasPopup?: "listbox";
+  ref?: Ref<HTMLButtonElement>;
+};
 
 /** E.2 "+ Hashtag" / F.5 "+ Image": 48px outlined button with a "Tối đa 5" note. */
-export function AddButton({ label, note, onClick, expanded, describedBy }: AddButtonProps) {
+export function AddButton({ label, note, onClick, expanded, describedBy, controls, hasPopup, ref }: AddButtonProps) {
   return (
     <button
+      ref={ref}
       type="button"
+      aria-haspopup={hasPopup}
+      aria-controls={controls}
       onClick={onClick}
       aria-expanded={expanded}
       aria-describedby={describedBy}
