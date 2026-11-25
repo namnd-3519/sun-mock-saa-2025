@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand-bg: #00101a;
+  --color-brand-header: rgb(11 15 18 / 0.8);
+  --color-brand-accent: #ffea9e;
+  --color-brand-divider: #2e3940;
+  --color-brand-error: #ff8a3d;
+  --font-sans: var(--font-montserrat);
+  --font-alt: var(--font-montserrat-alternates);
+}
+
+body {
+  background: var(--color-brand-bg);
+  color: #fff;
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+}
