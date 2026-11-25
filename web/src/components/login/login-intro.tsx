@@ -1,7 +1,13 @@
 import type { Messages } from "@/i18n/messages";
 import { GoogleLoginButton } from "./google-login-button";
 
-export function LoginIntro({ messages }: { messages: Messages["login"] }) {
+type LoginIntroProps = {
+  messages: Messages["login"];
+  hasAuthError: boolean;
+  next?: string;
+};
+
+export function LoginIntro({ messages, hasAuthError, next }: LoginIntroProps) {
   return (
     <div className="mx-auto flex w-full max-w-[1152px] flex-col gap-10 lg:gap-20">
       <h1 className="max-w-[451px] text-[56px] leading-[1.1] font-bold tracking-tight text-white sm:text-[80px] sm:leading-[100px]">
@@ -16,6 +22,8 @@ export function LoginIntro({ messages }: { messages: Messages["login"] }) {
           label={messages.button}
           loadingLabel={messages.loading}
           errorMessage={messages.error}
+          initialError={hasAuthError}
+          next={next}
         />
       </div>
     </div>

@@ -9,6 +9,7 @@ const vi = {
     error: "Đăng nhập không thành công. Vui lòng thử lại.",
   },
   footer: { copyright: "Bản quyền thuộc về Sun* © 2025" },
+  auth: { signOut: "Đăng xuất" },
   language: { label: "Chọn ngôn ngữ", vi: "Tiếng Việt", en: "English" },
 };
 
@@ -23,6 +24,7 @@ const en: Messages = {
     error: "Login failed. Please try again.",
   },
   footer: { copyright: "Copyright belongs to Sun* © 2025" },
+  auth: { signOut: "Sign out" },
   language: { label: "Select language", vi: "Tiếng Việt", en: "English" },
 };
 

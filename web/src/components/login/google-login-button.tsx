@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { IconGoogle } from "./icon-google";
 import { IconSpinner } from "./icon-spinner";
 import { startGoogleSignIn } from "./start-google-sign-in";
@@ -10,6 +9,8 @@ type GoogleLoginButtonProps = {
   label: string;
   loadingLabel: string;
   errorMessage: string;
+  initialError?: boolean;
+  next?: string;
 };
 
 type Status = "idle" | "loading" | "error";
@@ -18,9 +19,10 @@ export function GoogleLoginButton({
   label,
   loadingLabel,
   errorMessage,
+  initialError = false,
+  next,
 }: GoogleLoginButtonProps) {
-  const router = useRouter();
-  const [status, setStatus] = useState<Status>("idle");
+  const [status, setStatus] = useState<Status>(initialError ? "error" : "idle");
   const inFlight = useRef(false);
   const isLoading = status === "loading";
 
@@ -29,8 +31,8 @@ export function GoogleLoginButton({
     inFlight.current = true;
     setStatus("loading");
     try {
-      await startGoogleSignIn();
-      router.push("/todo");
+      // Stays loading on success: the browser is leaving for Google.
+      await startGoogleSignIn({ next });
     } catch {
       inFlight.current = false;
       setStatus("error");

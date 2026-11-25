@@ -5,15 +5,29 @@ import { LoginHeader } from "./login-header";
 import { LoginHeroBackground } from "./login-hero-background";
 import { LoginIntro } from "./login-intro";
 
-type LoginViewProps = { locale: Locale; messages: Messages };
+type LoginViewProps = {
+  locale: Locale;
+  messages: Messages;
+  hasAuthError: boolean;
+  next?: string;
+};
 
-export function LoginView({ locale, messages }: LoginViewProps) {
+export function LoginView({
+  locale,
+  messages,
+  hasAuthError,
+  next,
+}: LoginViewProps) {
   return (
     <div className="relative isolate flex min-h-screen flex-col overflow-x-clip bg-brand-bg">
       <LoginHeroBackground />
       <LoginHeader locale={locale} messages={messages.language} />
       <main className="flex flex-1 flex-col justify-center px-4 py-12 md:px-10 lg:px-36 lg:py-24">
-        <LoginIntro messages={messages.login} />
+        <LoginIntro
+          messages={messages.login}
+          hasAuthError={hasAuthError}
+          next={next}
+        />
       </main>
       <LoginFooter copyright={messages.footer.copyright} />
     </div>
