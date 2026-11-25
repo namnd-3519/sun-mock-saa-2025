@@ -68,8 +68,15 @@ export async function countKudos(client: KudosClient, filters: KudosFilters = {}
   return count ?? 0;
 }
 
-export async function getKudosById(client: KudosClient, id: string): Promise<KudosCard | null> {
-  const { data, error } = await client.from(FEED).select("*").eq("id", id).maybeSingle();
+/** One kudos through the masking feed; with filters, null when it does not match them. */
+export async function getKudosById(
+  client: KudosClient,
+  id: string,
+  filters: KudosFilters = {},
+): Promise<KudosCard | null> {
+  const { data, error } = await applyKudosFilters(client.from(FEED).select("*"), filters)
+    .eq("id", id)
+    .maybeSingle();
   throwIfError(error);
   return data ? mapKudosRow(data) : null;
 }

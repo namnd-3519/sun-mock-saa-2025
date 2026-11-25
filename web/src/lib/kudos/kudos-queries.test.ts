@@ -95,4 +95,12 @@ describe("countKudos / getKudosById", () => {
     const { client } = createFakeKudosClient({ data: null });
     expect(await getKudosById(client, "missing")).toBeNull();
   });
+
+  it("applies the Live board filters when given", async () => {
+    const { client, calls } = createFakeKudosClient({ data: null });
+    await getKudosById(client, "k1", { hashtagId: "h1", departmentId: "d1" });
+    expect(methodsOf(calls)).toEqual(["from", "select", "contains", "eq", "eq", "maybeSingle"]);
+    expect(calls[2].args).toEqual(["hashtag_ids", ["h1"]]);
+    expect(calls[4].args).toEqual(["id", "k1"]);
+  });
 });
