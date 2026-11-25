@@ -1,0 +1,31 @@
+{
+  "kits": {
+    "core": {
+      "version": "26.11.2",
+      "installedAt": "2026-11-21T10:06:14.810Z",
+      "installState": "complete"
+    },
+    "extras": {
+      "version": "26.11.2",
+      "installedAt": "2026-11-21T10:06:14.810Z",
+      "installState": "complete"
+    },
+    "sun-extras": {
+      "version": "26.11.2",
+      "installedAt": "2026-11-21T10:06:14.811Z",
+      "installState": "complete"
+    }
+  },
+  "scope": "local",
+  "name": "Core",
+  "version": "26.11.1",
+  "installedAt": "2026-11-18T02:54:04.940Z",
+  "userConfigFiles": [
+    ".gitignore",
+    ".repomixignore",
+    ".mcp.json",
+    ".tkmignore",
+    "takumi.json",
+    ".takumi.json"
+  ]
+}

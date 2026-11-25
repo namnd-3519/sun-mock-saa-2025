@@ -1,0 +1,28 @@
+{
+  "harnesses": [
+    "claude-code"
+  ],
+  "kits": {
+    "core": {},
+    "extras": {
+      "skills": {
+        "roles": [
+          "analyst",
+          "designer",
+          "engineer",
+          "qa"
+        ]
+      }
+    },
+    "sun-extras": {
+      "skills": {
+        "roles": [
+          "analyst",
+          "designer",
+          "engineer",
+          "qa"
+        ]
+      }
+    }
+  }
+}

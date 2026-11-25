@@ -1,0 +1,6 @@
+# >>> tkm managed
+.claude/skills/tkm
+.claude/rules/tkm
+# <<< tkm managed
+
+.env*

@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "env": {}
+    },
+    "momorph": {
+      "type": "http",
+      "url": "https://app.momorph.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MOMORPH_API_KEY}"
+      }
+    }
+  }
+}
