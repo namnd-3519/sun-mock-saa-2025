@@ -334,6 +334,43 @@
         ],
         "status": "done",
         "subtasks": []
+      },
+      {
+        "id": 26,
+        "title": "Unit test coverage tooling and thresholds",
+        "description": "Add @vitest/coverage-v8 and a test:coverage script with enforced thresholds, so coverage is measured in the repo instead of ad hoc.",
+        "details": "Add devDependency @vitest/coverage-v8 matching vitest 5.1.1. Add `test:coverage` script in web/package.json. Configure coverage in web/vitest.config.ts: provider v8, include src/**/*.{ts,tsx}, exclude tests and .d.ts, reporters text + json-summary + html, reportsDirectory coverage/ (git-ignored). Thresholds: src/lib/** and src/i18n/** at >= 80% lines / 80% branches; global threshold set at the measured baseline and raised as tasks 27 and 28 land. Baseline measured 2026-11-25: total 35.6% lines / 44.3% branches; lib+i18n 87.8% / 89.3%; components 7.3%; app 0%. Close the weak spots in lib: lib/supabase (46%), lib/profile (50%), lib/kudos-live (84%) with real unit tests (RED first for any behavior change). Safety-critical: lib/supabase and lib/auth touch auth/session, run their whole test group.",
+        "testStrategy": "pnpm test:coverage exits 0 with thresholds enforced; a deliberately removed test drops coverage below threshold and fails the run; pnpm typecheck and pnpm lint green.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 27,
+        "title": "Component tests with jsdom and Testing Library",
+        "description": "Enable rendering tests for React components (.tsx) so the components layer is covered by unit tests.",
+        "details": "Add devDependencies jsdom, @testing-library/react, @testing-library/user-event, @testing-library/jest-dom. Extend vitest include to src/**/*.test.{ts,tsx}; use per-file `// @vitest-environment jsdom` or environmentMatchGlobs so existing node tests stay on node. Add a setup file for jest-dom matchers. Write behavior tests (not snapshots) for interactive components first: login button, language switcher, profile menu, kudos card/like button, kudos compose form (validation, submit states), filter bar, notifications dropdown, floating actions, secret box dialog, avatar hover card. Cover loading/empty/error states and a11y roles. Mock only at boundaries (Supabase client, server actions, router). Raise the global coverage threshold from task 26 accordingly; target components >= 70% lines.",
+        "testStrategy": "pnpm test runs node and jsdom suites together and passes; components coverage >= 70% lines; each new test fails when the behavior it covers is broken; pnpm typecheck and pnpm lint green.",
+        "priority": "high",
+        "dependencies": [
+          26
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 28,
+        "title": "E2E test suite with @playwright/test",
+        "description": "Set up a Playwright E2E runner and cover the main user flows end to end against the local stack.",
+        "details": "Add @playwright/test and playwright.config.ts in web/ (webServer runs next dev or start; baseURL localhost; chromium at the MoMorph desktop viewport). Add `test:e2e` script; results and traces under web/test-results and web/playwright-report (git-ignored). Auth: avoid real Google OAuth; seed a test user in local Supabase and sign in via a test-only path (e.g. Supabase password sign-in in a global setup storing storageState), never enabled in production. Flows: Login (unauthenticated redirect, sign in, sign out); Homepage SAA renders key sections; Hệ thống giải; Countdown Prelaunch (before/after launch time with a fixed clock); Đa ngôn ngữ VN/EN switch persists via NEXT_LOCALE cookie; Viết Kudos (validation errors, successful submit appears on board); Like Kudos (like/unlike count updates, realtime on a second page); Sun* Kudos board filters. Requires `supabase start` and seed data; document the run in backend/README.md or docs. Once the runner exists, behavioral MoMorph screens may use the e2e-red-first test policy. Safety-critical: auth wiring and test-only sign-in path.",
+        "testStrategy": "pnpm test:e2e passes locally against supabase start with seed data; each flow fails when its feature is broken (verified by one temporary fault per flow); test-only auth path is unreachable in a production build.",
+        "priority": "high",
+        "dependencies": [
+          26
+        ],
+        "status": "pending",
+        "subtasks": []
       }
     ],
     "metadata": {
