@@ -5,7 +5,7 @@ import { getMessages } from "@/i18n/messages";
 
 export const instant = false;
 
-// Placeholder landing page after sign-in; the Homepage task replaces it.
+// Account placeholder holding the sign-out form; the profile dropdown task replaces it.
 export default async function TodoPage() {
   const cookieStore = await cookies();
   const messages = getMessages(resolveLocale(cookieStore.get(LOCALE_COOKIE)?.value));

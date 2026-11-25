@@ -23,7 +23,7 @@ describe("resolveAuthRedirect", () => {
   it("sends a signed-in visitor of login to the after-login page", () => {
     expect(
       resolveAuthRedirect({ pathname: "/login", search: "", isSignedIn: true }),
-    ).toBe("/todo");
+    ).toBe("/");
   });
 
   it("sends a signed-in visitor of login to a safe next path", () => {
@@ -40,7 +40,7 @@ describe("resolveAuthRedirect", () => {
         search: "?next=https%3A%2F%2Fevil.example",
         isSignedIn: true,
       }),
-    ).toBe("/todo");
+    ).toBe("/");
   });
 
   it("never redirects auth routes", () => {

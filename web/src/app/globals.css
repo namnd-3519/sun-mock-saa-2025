@@ -14,6 +14,11 @@
   --font-digital: "Digital Numbers", ui-monospace, monospace;
 }
 
+:root {
+  /* Glow of selected/hovered links and award cards (MoMorph text-shadow / box-shadow). */
+  --shadow-nav-glow: 0 4px 4px rgb(0 0 0 / 0.25), 0 0 6px #fae287;
+}
+
 body {
   background: var(--color-brand-bg);
   color: #fff;

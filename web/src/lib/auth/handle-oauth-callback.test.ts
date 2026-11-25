@@ -6,7 +6,7 @@ const url = (query: string) => new URL(`http://localhost:3000/auth/callback${que
 describe("handleOAuthCallback", () => {
   it("exchanges the code and goes to the after-login page", async () => {
     const exchange = vi.fn().mockResolvedValue({ error: null });
-    await expect(handleOAuthCallback(url("?code=abc"), exchange)).resolves.toBe("/todo");
+    await expect(handleOAuthCallback(url("?code=abc"), exchange)).resolves.toBe("/");
     expect(exchange).toHaveBeenCalledWith("abc");
   });
 
@@ -17,7 +17,7 @@ describe("handleOAuthCallback", () => {
     ).resolves.toBe("/kudos");
     await expect(
       handleOAuthCallback(url("?code=abc&next=%2F%2Fevil.example"), exchange),
-    ).resolves.toBe("/todo");
+    ).resolves.toBe("/");
   });
 
   it("returns to login with an error when the user cancelled", async () => {
