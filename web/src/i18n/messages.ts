@@ -1,5 +1,6 @@
 import type { Locale } from "./config";
 import { homeEn, homeVi } from "./home-messages";
+import { rulesEn, rulesVi } from "./rules-messages";
 
 const vi = {
   login: {
@@ -31,6 +32,7 @@ const vi = {
     close: "Đóng hành động nhanh",
   },
   home: homeVi,
+  rules: rulesVi,
   countdown: {
     title: "Sự kiện sẽ bắt đầu sau",
     days: "NGÀY",
@@ -71,6 +73,7 @@ const en: Messages = {
     close: "Close quick actions",
   },
   home: homeEn,
+  rules: rulesEn,
   countdown: {
     title: "Event starts in",
     days: "DAYS",

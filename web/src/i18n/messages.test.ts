@@ -25,6 +25,18 @@ describe("getMessages", () => {
     expect(getMessages("en").countdown.days).toBe("DAYS");
   });
 
+  it("returns the rules copy from the spec with one entry per Hero tier", () => {
+    const vi = getMessages("vi").rules;
+    expect(vi.title).toBe("Thể lệ");
+    expect(vi.close).toBe("Đóng");
+    expect(vi.writeKudos).toBe("Viết KUDOS");
+    expect(vi.nationalHeading).toBe("KUDOS QUỐC DÂN");
+    expect(getMessages("en").rules.title).toBe("Rules");
+    for (const locale of LOCALES) {
+      expect(getMessages(locale).rules.tiers).toHaveLength(4);
+    }
+  });
+
   it("keeps the brand button label identical in every language", () => {
     for (const locale of LOCALES) {
       expect(getMessages(locale).login.button).toBe("LOGIN With Google");
