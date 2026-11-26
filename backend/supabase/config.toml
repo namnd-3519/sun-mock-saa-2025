@@ -333,7 +333,7 @@ max_frequency = "5s"
 # Google sign-in for the web Login screen. Off until a person adds the OAuth client
 # (see backend/README.md); enabling it with empty values makes `supabase start` fail.
 [auth.external.google]
-enabled = false
+enabled = true
 client_id = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID)"
 # DO NOT commit the secret; it is read from backend/supabase/.env (git-ignored).
 secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
