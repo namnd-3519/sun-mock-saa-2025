@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { HomeMessages } from "@/i18n/home-messages";
 import { IconArrowUpRight } from "@/components/icons/icon-arrow-up-right";
+import { formatEventDate } from "@/lib/home/event-time";
 import { getRemainingTime } from "@/lib/prelaunch/countdown";
 import { AWARDS_PATH, KUDOS_PATH } from "@/lib/navigation/site-nav";
 import { HomeCountdown } from "./home-countdown";
@@ -44,7 +45,7 @@ export function HomeHero({ now, eventAt, messages }: HomeHeroProps) {
         />
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-x-[60px] gap-y-2">
-            <EventDetail label={messages.timeLabel} value={messages.timeValue} />
+            <EventDetail label={messages.timeLabel} value={formatEventDate(eventAt)} />
             <EventDetail label={messages.venueLabel} value={messages.venueValue} />
           </div>
           <p className="text-base leading-6 font-bold tracking-[0.5px] text-white">

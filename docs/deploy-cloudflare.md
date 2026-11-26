@@ -25,7 +25,7 @@ Dùng `pnpm cf:deploy`, **không** dùng `pnpm deploy` (đó là lệnh có sẵ
 | `SAA_EVENT_AT` | Runtime, mỗi request | Wrangler var |
 
 `SAA_*` là ISO-8601 có offset, ví dụ `2025-12-26T18:30:00+07:00`. Thiếu hoặc sai định dạng thì
-`SAA_LAUNCH_AT` tắt cổng countdown và `SAA_EVENT_AT` dùng mặc định 26/12/2025 18:30 (+07:00).
+`SAA_LAUNCH_AT` tắt cổng countdown; `SAA_EVENT_AT` lấy theo `SAA_LAUNCH_AT`, thiếu nốt thì dùng mặc định 26/12/2025 18:30 (+07:00). Ngày hiển thị cạnh "Thời gian" trên trang chủ lấy từ chính mốc này.
 Đổi giá trị var có hiệu lực ngay ở request kế tiếp, không cần build lại (đã kiểm tra trên preview).
 
 > **Cảnh báo:** Next đọc `.env.local` khi build. Nếu `web/.env.local` trỏ về Supabase local
