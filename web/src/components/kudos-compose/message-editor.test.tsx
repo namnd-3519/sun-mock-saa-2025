@@ -1,7 +1,7 @@
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useState } from "react";
-import { describe, expect, it } from "vitest";
+import { StrictMode, useState } from "react";
+import { describe, expect, it, vi } from "vitest";
 import { writeKudosEn as m } from "@/i18n/write-kudos-messages";
 import { MessageEditor } from "./message-editor";
 
@@ -53,5 +53,26 @@ describe("MessageEditor", () => {
     act(() => void dialog.dispatchEvent(new Event("cancel", { cancelable: true })));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(area).toHaveValue("text");
+  });
+
+  it("shows no field errors when the Add link dialog opens (StrictMode remount)", async () => {
+    // Browsers focus the first field on showModal and blur it on close; the jsdom polyfill does neither.
+    const { showModal, close } = HTMLDialogElement.prototype;
+    const open = vi.spyOn(HTMLDialogElement.prototype, "showModal").mockImplementation(function (this: HTMLDialogElement) {
+      showModal.call(this);
+      this.querySelector("input")?.focus();
+    });
+    const shut = vi.spyOn(HTMLDialogElement.prototype, "close").mockImplementation(function (this: HTMLDialogElement) {
+      close.call(this);
+      if (this.contains(document.activeElement)) (document.activeElement as HTMLElement).blur();
+    });
+    render(<StrictMode><Editor /></StrictMode>);
+    await userEvent.click(screen.getByRole("button", { name: m.toolbar.link }));
+    const dialog = screen.getByRole("dialog", { name: m.addLink.heading });
+    expect(screen.getByLabelText(m.addLink.text)).toHaveAttribute("aria-invalid", "false");
+    expect(dialog).not.toHaveTextContent(m.addLink.textErrors.required);
+    expect(dialog).not.toHaveTextContent(m.addLink.urlErrors.required);
+    open.mockRestore();
+    shut.mockRestore();
   });
 });

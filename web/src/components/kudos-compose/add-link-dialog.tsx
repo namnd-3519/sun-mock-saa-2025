@@ -35,6 +35,11 @@ export function AddLinkDialog({ initialText, messages: m, onSave, onClose }: Add
     return () => dialog?.close();
   }, []);
 
+  // Closing the dialog (StrictMode or Activity effect cleanup) blurs its field: not a user blur.
+  const touch = (field: "text" | "url") => {
+    if (ref.current?.open) setTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
   const save = () => {
     setTouched({ text: true, url: true });
     const result = validateLinkInput({ text, url });
@@ -81,7 +86,7 @@ export function AddLinkDialog({ initialText, messages: m, onSave, onClose }: Add
               aria-invalid={Boolean(textError)}
               aria-describedby={textError ? "add-link-text-error" : undefined}
               onChange={(event) => setText(event.target.value)}
-              onBlur={() => setTouched((prev) => ({ ...prev, text: true }))}
+              onBlur={() => touch("text")}
               className={`${INPUT_CLASS} ${borderFor(Boolean(textError))} min-w-0 flex-1`}
             />
           </div>
@@ -104,7 +109,7 @@ export function AddLinkDialog({ initialText, messages: m, onSave, onClose }: Add
                 aria-invalid={Boolean(urlError)}
                 aria-describedby={urlError ? "add-link-url-error" : undefined}
                 onChange={(event) => setUrl(event.target.value)}
-                onBlur={() => setTouched((prev) => ({ ...prev, url: true }))}
+                onBlur={() => touch("url")}
                 className={`${INPUT_CLASS} ${borderFor(Boolean(urlError))} pr-14`}
               />
               <LinkIcon className="pointer-events-none absolute top-4 right-6 size-6" />
