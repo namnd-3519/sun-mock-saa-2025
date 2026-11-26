@@ -4,8 +4,8 @@
     "launchOptions": { "headless": false, "slowMo": 350 },
     "contextOptions": {
       "viewport": { "width": 1440, "height": 900 },
-      "recordVideo": { "dir": ".takumi/outputs/artifacts/demo-video", "size": { "width": 1440, "height": 900 } }
+      "recordVideo": { "dir": "../../../.takumi/outputs/artifacts/demo-video", "size": { "width": 1440, "height": 900 } }
     }
   },
-  "outputDir": ".takumi/outputs/artifacts/demo-video"
+  "outputDir": "../../../.takumi/outputs/artifacts/demo-video"
 }
